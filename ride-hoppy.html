@@ -12,14 +12,7 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Disable hover effect for this specific page's about section */
-        .about:hover {
-            transform: none !important;
-            box-shadow: 0 .1rem .5rem var(--shadow-color) !important;
-            /* Keep original shadow, don't expand */
-        }
-    </style>
+
 </head>
 
 <body>
@@ -27,7 +20,6 @@
     <!-- header design -->
     <header class="header">
         <a href="index.html" class="logo">Irtaza Khalid.</a>
-
         <nav class="navbar">
             <a href="index.html#home">Home</a>
             <a href="index.html#about">About</a>
@@ -45,51 +37,114 @@
             <h2 class="heading" style="text-align: left;">Ride <span>Hoppy</span></h2>
             <h3>Free Corporate Ride Sharing Platform</h3>
 
-            <p>
+            <p style="margin-bottom: 2rem;">
                 Ride Hoppy is a two-sided mobile application solution designed to connect passengers with corporate
-                employees
-                who are willing to offer free rides during their daily commute. The platform promotes community-based
-                transport,
-                reduces commuting costs, and encourages corporate social responsibility.
+                employees who are willing to offer free rides during their daily commute. The platform promotes
+                community-based transport, reduces commuting costs, and encourages corporate social responsibility.
             </p>
 
+            <!-- Main Hero Image -->
             <img src="images/New Project (1).png" alt="Ride Hoppy Main Interface"
-                style="display: block; margin: 0 auto 2rem auto; width: 100%; max-width: 600px; height: auto; border-radius: 1rem; object-fit: cover;">
+                style="display: block; margin: 0 auto 4rem auto; width: 100%; max-width: 600px; height: auto; border-radius: 1rem; object-fit: cover;">
 
-            <h3>Key Features</h3>
-            <div style="display: flex; gap: 4rem; flex-wrap: wrap; margin-top: 2rem;">
+
+            <!-- The Challenge Section -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 2.6rem; color: var(--text-color); margin-bottom: 1.5rem;">The Challenge</h3>
+                <p>
+                    For many corporate employees, the daily commute is a significant source of stress and expense.
+                    Public
+                    transport can be unreliable or crowded, while ride-hailing services like Uber or Careem become
+                    prohibitively expensive for daily travel. Furthermore, large organizations often suffer from
+                    "silos," where employees rarely interact with colleagues outside their immediate teams. There was a
+                    need for a solution that could solve the mobility problem while simultaneously building a stronger
+                    corporate community.
+                </p>
+            </div>
+
+            <!-- The Solution Section -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 2.6rem; color: var(--text-color); margin-bottom: 1.5rem;">The Solution</h3>
+                <p style="margin-bottom: 2rem;">
+                    <strong>Ride Hoppy</strong> bridges this gap by creating a trusted, internal ride-sharing network.
+                    Unlike commercial platforms, Ride Hoppy is exclusive to corporate employees, ensuring a high level
+                    of
+                    safety and trust. The app operates on a "freemium" community model where rides are free, fostering a
+                    culture of helping one another.
+                </p>
+                <p>
+                    The system consists of two distinct interfaces: the <strong>Driver App</strong> for those with
+                    vehicles,
+                    and the <strong>Rider App</strong> for passengers seeking a lift. By matching routes and schedules,
+                    we optimize empty seats and reduce the total number of vehicles on the road.
+                </p>
+            </div>
+
+            <!-- Detailed Features Section -->
+            <h3 style="font-size: 2.6rem; color: var(--text-color); margin-bottom: 2rem;">Core Experience</h3>
+            <div style="display: flex; gap: 4rem; flex-wrap: wrap; margin-bottom: 4rem;">
                 <div style="flex: 1; min-width: 300px;">
-                    <h4 style="font-size: 2rem; color: var(--main-color); margin-bottom: 1rem;">Driver App (Corporate
-                        Employees)</h4>
+                    <h4 style="font-size: 2rem; color: var(--main-color); margin-bottom: 1rem;">For Drivers (Providers)
+                    </h4>
                     <ul style="font-size: 1.6rem; list-style: none;">
-                        <li style="margin-bottom: 1rem;"><i class='bx bx-check-circle'
-                                style="color: var(--main-color);"></i> Create profile & verify identity</li>
-                        <li style="margin-bottom: 1rem;"><i class='bx bx-check-circle'
-                                style="color: var(--main-color);"></i> Set travel route, schedule & availability</li>
-                        <li style="margin-bottom: 1rem;"><i class='bx bx-check-circle'
-                                style="color: var(--main-color);"></i> Accept or reject ride requests</li>
+                        <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
+                            <i class='bx bx-check-circle' style="color: var(--main-color); margin-top: .4rem;"></i>
+                            <span><strong>Route & Schedule:</strong> Easily set daily commute routes and available
+                                timings.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
+                            <i class='bx bx-check-circle' style="color: var(--main-color); margin-top: .4rem;"></i>
+                            <span><strong>Request Management:</strong> View rider profiles and accept/reject requests
+                                based on convenience.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
+                            <i class='bx bx-check-circle' style="color: var(--main-color); margin-top: .4rem;"></i>
+                            <span><strong>Verification:</strong> Corporate email verification ensures only legitimate
+                                colleagues can join.</span>
+                        </li>
                     </ul>
                 </div>
                 <div style="flex: 1; min-width: 300px;">
-                    <h4 style="font-size: 2rem; color: var(--main-color); margin-bottom: 1rem;">Rider App (Passengers)
+                    <h4 style="font-size: 2rem; color: var(--main-color); margin-bottom: 1rem;">For Riders (Passengers)
                     </h4>
                     <ul style="font-size: 1.6rem; list-style: none;">
-                        <li style="margin-bottom: 1rem;"><i class='bx bx-check-circle'
-                                style="color: var(--main-color);"></i> Request free ride by location</li>
-                        <li style="margin-bottom: 1rem;"><i class='bx bx-check-circle'
-                                style="color: var(--main-color);"></i> View availabile corporate drivers</li>
-                        <li style="margin-bottom: 1rem;"><i class='bx bx-check-circle'
-                                style="color: var(--main-color);"></i> Track ride status & communicate</li>
+                        <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
+                            <i class='bx bx-check-circle' style="color: var(--main-color); margin-top: .4rem;"></i>
+                            <span><strong>Smart Matching:</strong> Find drivers passing near your location at the right
+                                time.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
+                            <i class='bx bx-check-circle' style="color: var(--main-color); margin-top: .4rem;"></i>
+                            <span><strong>Live Tracking:</strong> Real-time map tracking to know exactly when your ride
+                                arrives.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
+                            <i class='bx bx-check-circle' style="color: var(--main-color); margin-top: .4rem;"></i>
+                            <span><strong>Safety First:</strong> View driver ratings and verified profiles before
+                                booking.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
 
+            <!-- Impact Section -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 2.6rem; color: var(--text-color); margin-bottom: 1.5rem;">Project Impact</h3>
+                <p>
+                    By facilitating carpooling, Ride Hoppy directly impacts the organization's carbon footprint,
+                    supports
+                    green initiatives, and significantly lowers commuting costs for junior employees. Beyond the
+                    metrics, it serves as a powerful networking tool, allowing employees from different departments—who
+                    might never meet otherwise—to connect during their ride.
+                </p>
+            </div>
+
             <p style="margin-top: 2rem;">
-                <strong>Note:</strong> Although rides are free, passengers have the option to tip the driver based on
-                their experience.
+                <strong>Note:</strong> Although rides are free to encourage usage, passengers have the option to tip the
+                driver as a gesture of appreciation.
             </p>
 
-            <!-- Grid changed to 4 columns to reduce image size significantly -->
+            <!-- Bottom Images: 4-Column Grid (Maintained as requested) -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem;">
                 <img src="images/rh_1.png" alt="Ride Hoppy Interface 1" style="width: 100%; border-radius: 1rem;">
                 <img src="images/rh_2.png" alt="Ride Hoppy Interface 2" style="width: 100%; border-radius: 1rem;">
