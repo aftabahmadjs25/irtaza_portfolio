@@ -12,6 +12,14 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Disable hover effect for this specific page's about section */
+        .about:hover {
+            transform: none !important;
+            box-shadow: 0 .1rem .5rem var(--shadow-color) !important;
+            /* Keep original shadow, don't expand */
+        }
+    </style>
 </head>
 
 <body>
@@ -45,8 +53,8 @@
                 reduces commuting costs, and encourages corporate social responsibility.
             </p>
 
-            <img src="images/rh_hero.png" alt="Ride Hoppy Main Interface"
-                style="width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem; box-shadow: 0 .2rem .5rem var(--shadow-color); object-fit: cover;">
+            <img src="images/New Project (1).png" alt="Ride Hoppy Main Interface"
+                style="display: block; margin: 0 auto 2rem auto; width: 100%; max-width: 600px; height: auto; border-radius: 1rem; object-fit: cover;">
 
             <h3>Key Features</h3>
             <div style="display: flex; gap: 4rem; flex-wrap: wrap; margin-top: 2rem;">
@@ -81,15 +89,12 @@
                 their experience.
             </p>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 4rem;">
-                <img src="images/rh_1.png" alt="Ride Hoppy Interface 1"
-                    style="width: 100%; border-radius: 1rem; box-shadow: 0 .2rem .5rem var(--shadow-color);">
-                <img src="images/rh_2.png" alt="Ride Hoppy Interface 2"
-                    style="width: 100%; border-radius: 1rem; box-shadow: 0 .2rem .5rem var(--shadow-color);">
-                <img src="images/rh_3.png" alt="Ride Hoppy Interface 3"
-                    style="width: 100%; border-radius: 1rem; box-shadow: 0 .2rem .5rem var(--shadow-color);">
-                <img src="images/rh_4.png" alt="Ride Hoppy Interface 4"
-                    style="width: 100%; border-radius: 1rem; box-shadow: 0 .2rem .5rem var(--shadow-color);">
+            <!-- Grid changed to 4 columns to reduce image size significantly -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem;">
+                <img src="images/rh_1.png" alt="Ride Hoppy Interface 1" style="width: 100%; border-radius: 1rem;">
+                <img src="images/rh_2.png" alt="Ride Hoppy Interface 2" style="width: 100%; border-radius: 1rem;">
+                <img src="images/rh_3.png" alt="Ride Hoppy Interface 3" style="width: 100%; border-radius: 1rem;">
+                <img src="images/rh_4.png" alt="Ride Hoppy Interface 4" style="width: 100%; border-radius: 1rem;">
             </div>
 
             <a href="index.html#portfolio" class="btn" style="margin-top: 4rem;">Back to Portfolio</a>
