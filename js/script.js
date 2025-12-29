@@ -19,7 +19,7 @@ window.onscroll = () => {
         let height = sec.offsetHeight;
         let id = sec.getAttribute('id');
 
-        if(top >= offset && top < offset + height) {
+        if (top >= offset && top < offset + height) {
             navLinks.forEach(links => {
                 links.classList.remove('active');
                 document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
@@ -28,34 +28,36 @@ window.onscroll = () => {
     });
 
 
-/*========== sticky navbar ==========*/
-let header = document.querySelector('.header');
+    /*========== sticky navbar ==========*/
+    let header = document.querySelector('.header');
 
-header.classList.toggle('sticky', window.scrollY > 100);
+    header.classList.toggle('sticky', window.scrollY > 100);
 
 
-/*========== remove menu icon navbar when click navbar link (scroll) ==========*/
-menuIcon.classList.remove('bx-x');
-navbar.classList.remove('active');
+    /*========== remove menu icon navbar when click navbar link (scroll) ==========*/
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
 
 };
 
 
 /*========== swiper ==========*/
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 50,
-    loop: true,
-    grabCursor: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-});
+if (typeof Swiper !== 'undefined' && document.querySelector('.mySwiper')) {
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 50,
+        loop: true,
+        grabCursor: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+}
 
 
 /*========== dark light mode ==========*/
@@ -68,14 +70,56 @@ darkModeIcon.onclick = () => {
 
 
 /*========== scroll reveal ==========*/
-ScrollReveal({
-    // reset: true,
-    distance: '80px',
-    duration: 2000,
-    delay: 200
-});
+if (typeof ScrollReveal !== 'undefined') {
+    ScrollReveal({
+        // reset: true,
+        distance: '80px',
+        duration: 2000,
+        delay: 200
+    });
 
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { origin: 'bottom' });
-ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
-ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
+    ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
+    ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { origin: 'bottom' });
+    ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
+    ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
+}
+
+/*========== phone carousel ==========*/
+/*========== phone carousel ==========*/
+const phoneCarousels = document.querySelectorAll('.phone-container');
+
+phoneCarousels.forEach(carousel => {
+    const phoneImages = carousel.querySelectorAll('.phone-screen img');
+    // Select buttons within this specific carousel container
+    // We expect the HTML to use classes: .nav-btn.prev and .nav-btn.next
+    // Or we can try to find them by their position or generic class if we update HTML nicely.
+    // Let's assume we update HTML to have specific classes for prev/next or just rely on order.
+    // But modifying existing HTML to have 'prev' and 'next' classes is cleaner.
+    // For now, let's look for .nav-btn and distinguish them.
+    const buttons = carousel.querySelectorAll('.nav-btn');
+    const prevBtn = buttons[0]; // Assuming first button is prev
+    const nextBtn = buttons[1]; // Assuming second button is next
+
+    if (phoneImages.length > 0) {
+        let currentImageIndex = 0;
+
+        function showImage(index) {
+            phoneImages.forEach(img => img.classList.remove('active'));
+            phoneImages[index].classList.add('active');
+        }
+
+        if (nextBtn) {
+            nextBtn.onclick = () => {
+                currentImageIndex = (currentImageIndex + 1) % phoneImages.length;
+                showImage(currentImageIndex);
+            };
+        }
+
+        if (prevBtn) {
+            prevBtn.onclick = () => {
+                currentImageIndex = (currentImageIndex - 1 + phoneImages.length) % phoneImages.length;
+                showImage(currentImageIndex);
+            };
+        }
+    }
+});
