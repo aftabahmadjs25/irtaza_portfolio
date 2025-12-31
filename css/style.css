@@ -1272,6 +1272,14 @@ img {
     transition: .5s ease;
 }
 
+.about-col-2 .card h2,
+.about-col-2 .card h3,
+.about-col-2 .card p,
+.about-col-2 .services-box h3,
+.about-col-2 .services-box p {
+    text-align: left;
+}
+
 .about-col-2 .card:hover,
 .about-col-2 .services-box:hover {
     box-shadow: 0 .1rem 2rem var(--shadow-color);
