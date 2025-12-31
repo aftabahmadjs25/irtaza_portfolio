@@ -440,6 +440,11 @@ span {
 .services-box h3 {
     font-size: 2.6rem;
     transition: .5s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
 }
 
 .services-box:hover h3 {
@@ -449,6 +454,7 @@ span {
 .services-box p {
     font-size: 1.6rem;
     margin: 1rem 0 3rem;
+    text-align: left;
 }
 
 /* Education Specific Styling */
@@ -1033,7 +1039,7 @@ span {
     }
 
     .home {
-        padding: 10rem 3% 23rem;
+        padding: 0rem 3% 23rem;
         justify-content: center;
         text-align: center;
     }
