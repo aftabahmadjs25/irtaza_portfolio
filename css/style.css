@@ -494,6 +494,7 @@ span {
     background: #fff;
     padding: 2rem;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .portfolio-box img {
@@ -562,17 +563,6 @@ span {
 .portfolio-layer .case-study-btn i {
     font-size: 2rem;
     color: #333;
-}
-
-/* Make the entire project box clickable */
-.portfolio-layer .case-study-btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
 }
 
 .testimonial-container {
