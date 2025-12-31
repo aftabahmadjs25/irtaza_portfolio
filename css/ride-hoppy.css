@@ -14,7 +14,7 @@
 :root {
     --bg-color: #fdfdfd;
     --text-color: #333;
-    --main-color: #0A2472;
+    --main-color: #1178B0;
     --white-color: #fdfdfd;
     --shadow-color: rgba(0, 0, 0, .2);
 }
@@ -138,7 +138,7 @@ span {
     gap: 4rem;
     max-width: 1300px;
     width: 100%;
-    margin: 2rem 10rem;
+    margin: 2rem auto;
     background: var(--bg-color);
     padding: 1rem 2rem 1rem;
     border-radius: 2rem;
