@@ -1,0 +1,24 @@
+@import url('ride-hoppy.css');
+
+:root {
+    --main-color: #008ba3;
+    /* Teal color from Curio Campus logo */
+}
+
+/* Adjustments specifically for Curio Campus if needed */
+.about-content h2 span {
+    color: var(--main-color);
+}
+
+.nav-btn {
+    color: var(--main-color);
+}
+
+.btn {
+    background: var(--main-color);
+}
+
+.btn:hover {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
