@@ -1,0 +1,24 @@
+@import url('ride-hoppy.css');
+
+:root {
+    --main-color: #74b72e;
+    /* Vibrant tech green from PC Genius logo */
+}
+
+/* Adjustments specifically for PC Genius if needed */
+.about-content h2 span {
+    color: var(--main-color);
+}
+
+.nav-btn {
+    color: var(--main-color);
+}
+
+.btn {
+    background: var(--main-color);
+}
+
+.btn:hover {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
