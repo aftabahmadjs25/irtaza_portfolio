@@ -32,6 +32,26 @@
     --shadow-color: rgba(0, 0, 0, .7);
 }
 
+.dark-mode .logo,
+.dark-mode .header.sticky .navbar a.active,
+.dark-mode span {
+    color: var(--white-color);
+}
+
+.dark-mode .home .profession-box .profession {
+    color: var(--white-color);
+}
+
+.dark-mode .home .home-content .social-media a {
+    color: var(--white-color);
+    border-color: var(--white-color);
+}
+
+.dark-mode .home .home-content .social-media a:hover {
+    background: var(--white-color);
+    color: var(--bg-color);
+}
+
 html {
     font-size: 62.5%;
     overflow-x: hidden;
