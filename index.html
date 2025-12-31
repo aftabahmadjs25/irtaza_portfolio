@@ -28,6 +28,7 @@
             <a href="#about">About</a>
             <a href="#services">Experience</a>
             <a href="#portfolio">Projects</a>
+            <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -209,6 +210,16 @@
                     Skills advancement & recognition</p>
                 <!-- <a href="#" class="btn">Read More</a> -->
             </div>
+            <div class="services-box education-box">
+                <h3 style="margin-bottom: 2rem;">Education</h3>
+                <div class="education-content">
+                    <p class="degree">Bachelor of Science in Software Engineering</p>
+                    <p class="university">University of Central Punjab • 2021-2025</p>
+
+                    <p class="degree" style="margin-top: 1.5rem;">ICS - Intermediate</p>
+                    <p class="university">Government College University (GCU) Lahore • 2018-2020</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -274,6 +285,56 @@
         </div>
     </section>
 
+    <!-- skills section design -->
+    <section class="skills" id="skills">
+        <h2 class="heading">My <span>Skills</span></h2>
+
+        <div class="skills-container">
+            <div class="skills-box">
+                <h3>Languages</h3>
+                <div class="skills-list">
+                    <span>Dart</span>
+                    <span>SQL</span>
+                    <span>C/C++</span>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+
+            <div class="skills-box">
+                <h3>Frameworks & Tools</h3>
+                <div class="skills-list">
+                    <span>Flutter</span>
+                    <span>Firebase</span>
+                    <span>Provider</span>
+                    <span>Git</span>
+                    <span>REST APIs</span>
+                </div>
+            </div>
+
+            <div class="skills-box">
+                <h3>Developer Tools</h3>
+                <div class="skills-list">
+                    <span>Android Studio</span>
+                    <span>VS Code</span>
+                    <span>Postman</span>
+                    <span>MySQL Workbench</span>
+                    <span>GitHub</span>
+                </div>
+            </div>
+
+            <div class="skills-box">
+                <h3>Specializations</h3>
+                <div class="skills-list">
+                    <span>Mobile Development</span>
+                    <span>Clean Architecture</span>
+                    <span>State Management</span>
+                    <span>Real-time Features</span>
+                    <span>App Publishing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- testimonial design -->
     <!-- <div class="testimonial-container">
         <h2 class="heading">Valuable <span>Testimonial</span></h2>
@@ -322,20 +383,47 @@
 
     <!-- contact section design -->
     <section class="contact" id="contact">
-        <h2 class="heading">Contact <span>Me!</span></h2>
+        <h2 class="heading"><span class="pre-title">GET IN TOUCH</span>Let's Build Something <span>Amazing
+                Together</span></h2>
 
-        <form action="#">
-            <div class="input-box">
-                <input type="text" placeholder="Full Name">
-                <input type="email" placeholder="Email Address">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Connect With Me</h3>
+                <p class="contact-bio">I'm always open to discussing new projects, creative ideas, or opportunities to
+                    contribute to your vision. Feel free to reach out!</p>
+
+                <a href="https://github.com/Irtaza4" target="_blank" class="contact-card">
+                    <div class="card-left">
+                        <i class='bx bxl-github'></i>
+                        <span>GitHub</span>
+                    </div>
+                    <i class='bx bx-link-external'></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/irtaza-khalid-1903a6270/" target="_blank" class="contact-card">
+                    <div class="card-left">
+                        <i class='bx bxl-linkedin'></i>
+                        <span>LinkedIn</span>
+                    </div>
+                    <i class='bx bx-link-external'></i>
+                </a>
             </div>
-            <div class="input-box">
-                <input type="number" placeholder="Mobile Number">
-                <input type="text" placeholder="Email Subject">
-            </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <input type="submit" value="Send Message" class="btn">
-        </form>
+
+            <form action="https://formsubmit.co/irtazakhalidll@gmail.com" method="POST">
+                <div class="input-box">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-box">
+                    <input type="number" name="phone" placeholder="Mobile Number">
+                    <input type="text" name="_subject" placeholder="Email Subject">
+                </div>
+                <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                <div class="btn-container">
+                    <input type="submit" value="Send Message" class="btn">
+                </div>
+            </form>
+        </div>
     </section>
 
     <!-- footer design -->
