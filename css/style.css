@@ -143,6 +143,7 @@ section {
 .home {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .home .home-content {
@@ -1063,10 +1064,16 @@ span {
     }
 
     .home .profession-container .profession-box {
-        position: fixed;
-        top: 450px;
-        left: 0;
-        width: 100%;
+        display: none;
+    }
+
+    .home .profession-container .overlay {
+        position: absolute;
+        top: 70rem;
+        left: 50%;
+        right: 0;
+        transform: rotate(90deg) translate(-50%, 50%) scaleY(3);
+        border-width: 23.9rem;
     }
 
     .home .profession-box .profession {
@@ -1095,21 +1102,9 @@ span {
         transform: rotate(180deg) translate(-220px, -325px);
     }
 
-    .home .profession-box .circle {
-        position: fixed;
-        width: 670px;
-        height: 670px;
-        z-index: -1;
-    }
 
-    .home .profession-container .overlay {
-        position: fixed;
-        top: 70rem;
-        left: 50%;
-        right: 0;
-        transform: rotate(90deg) translate(-50%, 50%) scaleY(3);
-        border-width: 23.9rem;
-    }
+
+
 
     .about {
         flex-direction: column-reverse;
