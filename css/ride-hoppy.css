@@ -11,6 +11,13 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 :root {
     --bg-color: #fdfdfd;
     --text-color: #333;
@@ -220,13 +227,71 @@ span {
     transition: .5s ease;
 }
 
-.footer-iconTop a:hover {
-    outline-color: var(--white-color);
+
+/* Phone Carousel Styles */
+.phone-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
-.footer-iconTop a i {
-    font-size: 2.4rem;
-    color: #333;
+.phone-mockup {
+    width: 240px;
+    height: 520px;
+    border: 10px solid #333;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    box-shadow: 0 1rem 3rem var(--shadow-color);
+    flex-shrink: 0;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.phone-screen img.active {
+    opacity: 1;
+}
+
+.nav-btn {
+    font-size: 3rem;
+    color: var(--main-color);
+    cursor: pointer;
+    background: var(--bg-color);
+    border-radius: 50%;
+    padding: 1.5rem;
+    box-shadow: 0 .2rem .5rem var(--shadow-color);
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-btn:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+    transform: scale(1.1);
 }
 
 /* Breakpoints */
@@ -296,16 +361,23 @@ span {
         flex-direction: column;
         text-align: center !important;
         padding: 4rem 2rem;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     .about .about-content {
         text-align: center !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
     .about-content h2,
     .about-content h3,
     .about-content p {
         text-align: center !important;
+        width: 100% !important;
     }
 
     .about .about-content .btn {
@@ -326,6 +398,26 @@ span {
         padding: 1rem;
         font-size: 2.2rem;
     }
+
+    .footer {
+        flex-direction: column-reverse !important;
+        gap: 2rem !important;
+        padding: 3rem 7% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .footer-text p {
+        text-align: center !important;
+    }
+
+    .footer-iconTop {
+        margin-bottom: 1rem !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
 }
 
 @media (max-width: 617px) {
@@ -343,6 +435,10 @@ span {
 }
 
 @media (max-width: 450px) {
+    section {
+        padding: 8rem 4% 2rem !important;
+    }
+
     .phone-mockup {
         width: 180px;
         height: 390px;
@@ -354,98 +450,46 @@ span {
     }
 
     .phone-container {
-        gap: 1rem;
+        gap: 1rem !important;
+        flex-wrap: nowrap !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+}
+
+@media (max-width: 370px) {
+    section {
+        padding: 6rem 3% 2rem !important;
     }
 
-    .about .btn {
-        display: block;
-        width: max-content;
-        margin: 4rem auto 0 auto !important;
+    .phone-mockup {
+        width: 150px;
+        height: 325px;
     }
 
-    .footer {
-        flex-direction: column-reverse !important;
-        gap: 2rem !important;
-        text-align: center !important;
-        padding: 3rem 7% !important;
+    .nav-btn {
+        padding: 0.5rem;
+        font-size: 1.6rem;
+    }
+
+    .phone-container {
+        gap: 0.5rem !important;
+        flex-wrap: nowrap !important;
+        display: flex !important;
         justify-content: center !important;
         align-items: center !important;
     }
 
+    .about {
+        padding: 3rem 1rem;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
+
     .footer-text p {
-        font-size: 1.4rem !important;
-        text-align: center !important;
+        font-size: 1.2rem !important;
     }
-
-    .footer-iconTop {
-        margin-bottom: 1rem !important;
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-    }
-}
-
-/* Phone Carousel Styles */
-.phone-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 4rem;
-    flex-wrap: wrap;
-}
-
-.phone-mockup {
-    width: 240px;
-    height: 520px;
-    border: 10px solid #333;
-    border-radius: 28px;
-    overflow: hidden;
-    position: relative;
-    background: #000;
-    box-shadow: 0 1rem 3rem var(--shadow-color);
-    flex-shrink: 0;
-}
-
-.phone-screen {
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-}
-
-.phone-screen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.phone-screen img.active {
-    opacity: 1;
-}
-
-.nav-btn {
-    font-size: 3rem;
-    color: var(--main-color);
-    cursor: pointer;
-    background: var(--bg-color);
-    border-radius: 50%;
-    padding: 1.5rem;
-    box-shadow: 0 .2rem .5rem var(--shadow-color);
-    transition: .3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.nav-btn:hover {
-    background: var(--main-color);
-    color: var(--white-color);
-    transform: scale(1.1);
 }
