@@ -144,8 +144,8 @@ span {
     align-items: center;
     gap: 4rem;
     max-width: 1300px;
-    width: 100%;
-    margin: 2rem auto;
+    width: auto;
+    margin: 2rem 2rem;
     background: var(--bg-color);
     padding: 1rem 2rem 1rem;
     border-radius: 2rem;
@@ -311,7 +311,8 @@ span {
     }
 
     .about {
-        margin: 2rem 5%;
+        margin: 2rem auto;
+        width: 90%;
         padding: 2rem;
     }
 }
@@ -371,13 +372,29 @@ span {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+        padding: 0 2rem;
     }
 
-    .about-content h2,
-    .about-content h3,
+    .about-content h2 {
+        font-size: 3.5rem;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    .about-content h3 {
+        font-size: 1.8rem;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
     .about-content p {
         text-align: center !important;
         width: 100% !important;
+        font-size: 1.5rem;
+        line-height: 1.6;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     .about .about-content .btn {
@@ -436,7 +453,20 @@ span {
 
 @media (max-width: 450px) {
     section {
-        padding: 8rem 4% 2rem !important;
+        padding: 8rem 5% 2rem !important;
+    }
+
+    .about-content h2 {
+        font-size: 2.8rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.6rem;
+    }
+
+    .about-content p {
+        font-size: 1.4rem;
+        padding: 0 1rem;
     }
 
     .phone-mockup {
@@ -460,7 +490,19 @@ span {
 
 @media (max-width: 370px) {
     section {
-        padding: 6rem 3% 2rem !important;
+        padding: 6rem 5% 2rem !important;
+    }
+
+    .about-content h2 {
+        font-size: 2.4rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .about-content p {
+        font-size: 1.3rem;
     }
 
     .phone-mockup {
