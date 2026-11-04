@@ -2308,3 +2308,8 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+/* Enlarge the artwork within SoleStep's generously padded logo asset. */
+.sole-logo { position: relative; width: 18rem; height: 18rem; flex-shrink: 0; overflow: hidden; margin-bottom: 2rem; }
+.sole-logo img, .portfolio-box .sole-logo img { position: absolute; width: 300%; max-width: none; height: auto; left: -100%; top: -30%; margin: 0; object-fit: contain; }
+.portfolio-box:hover .sole-logo img { transform: scale(1.05); }
