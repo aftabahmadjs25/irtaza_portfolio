@@ -295,16 +295,12 @@ img {
   position: absolute;
   top: -14px;
   right: clamp(20px, 5vw, 78px);
-  z-index: 8;
+  z-index: 12;
   width: 242px;
   transform-origin: 50% 0%;
-  pointer-events: auto;
-  cursor: grab;
+  pointer-events: none;
   user-select: none;
-}
-
-.lanyard-wrap:active {
-  cursor: grabbing;
+  -webkit-user-select: none;
 }
 
 .lanyard-strap {
@@ -315,6 +311,22 @@ img {
   background: linear-gradient(90deg, #e6f0f7 0%, #ffffff 45%, #d0e2ee 100%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 3px 3px;
+  transform-origin: 50% 0%;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.lanyard-body {
+  position: relative;
+  transform-origin: 50% 0%;
+  will-change: transform;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.lanyard-body.is-dragging {
+  cursor: grabbing;
 }
 
 .lanyard-strap::before {

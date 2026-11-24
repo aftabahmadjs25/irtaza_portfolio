@@ -28,37 +28,155 @@
     });
   }
 
-  function startBadgeSway() {
-    if (!badge || RM) return;
-    badge.animate(
-      [{ transform: 'rotate(-1.2deg)' }, { transform: 'rotate(1.2deg)' }],
-      {
-        duration: 3200,
-        iterations: Infinity,
-        direction: 'alternate',
-        easing: 'ease-in-out',
+  function startBadgePhysics() {
+    const strap = document.getElementById('lanyardStrap');
+    const body = document.getElementById('lanyardBody');
+    if (!badge || !strap || !body || RM) return;
+
+    let dx = 0;
+    let dy = 0;
+    let vx = 0;
+    let vy = 0;
+    let tilt = 0;
+    let vtilt = 0;
+
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startDx = 0;
+    let startDy = 0;
+    let lastClientX = 0;
+    let lastClientY = 0;
+    let lastMoveTime = 0;
+
+    // Spring constants for snappy elastic lanyard snap-back
+    const K_POS = 170;
+    const D_POS = 11.5;
+    const K_ROT = 140;
+    const D_ROT = 9.5;
+
+    let lastTime = performance.now();
+    let swayTime = 0;
+
+    // Soft resistance only when pulled very far so you can drag freely across the hero
+    function softClamp(val, limit) {
+      const abs = Math.abs(val);
+      if (abs <= limit) return val;
+      return Math.sign(val) * (limit + (abs - limit) * 0.35);
+    }
+
+    body.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      body.classList.add('is-dragging');
+      body.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startY = e.clientY;
+      startDx = dx;
+      startDy = dy;
+      lastClientX = e.clientX;
+      lastClientY = e.clientY;
+      lastMoveTime = performance.now();
+      vx = 0;
+      vy = 0;
+      e.preventDefault();
+    });
+
+    body.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const now = performance.now();
+      const dt = Math.max(0.004, (now - lastMoveTime) / 1000);
+
+      const rawDx = startDx + (e.clientX - startX);
+      const rawDy = startDy + (e.clientY - startY);
+      const nextDx = softClamp(rawDx, Math.min(window.innerWidth * 0.65, 680));
+      const nextDy = Math.max(-75, softClamp(rawDy, Math.min(window.innerHeight * 0.5, 360)));
+
+      // Smoothly track throw velocity on release
+      const instVx = (e.clientX - lastClientX) / dt;
+      const instVy = (e.clientY - lastClientY) / dt;
+      vx = vx * 0.55 + instVx * 0.45;
+      vy = vy * 0.55 + instVy * 0.45;
+
+      dx = nextDx;
+      dy = nextDy;
+      lastClientX = e.clientX;
+      lastClientY = e.clientY;
+      lastMoveTime = now;
+    });
+
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      body.classList.remove('is-dragging');
+      if (e && body.hasPointerCapture(e.pointerId)) {
+        body.releasePointerCapture(e.pointerId);
       }
-    );
+      // Clamp extreme flick speeds for smooth feel
+      vx = Math.max(-1800, Math.min(1800, vx));
+      vy = Math.max(-1400, Math.min(1400, vy));
+    }
 
-    const triggerSwing = () => {
-      badge.animate(
-        [
-          { transform: 'rotate(0deg)' },
-          { transform: 'rotate(-6deg)' },
-          { transform: 'rotate(4deg)' },
-          { transform: 'rotate(-2deg)' },
-          { transform: 'rotate(0deg)' },
-        ],
-        {
-          duration: 1300,
-          easing: 'ease-out',
-          composite: 'add',
+    body.addEventListener('pointerup', endDrag);
+    body.addEventListener('pointercancel', endDrag);
+
+    // Subtle playful nudge when hovering over the resting badge
+    body.addEventListener('pointerenter', (e) => {
+      if (dragging) return;
+      const rect = body.getBoundingClientRect();
+      const fromLeft = e.clientX < rect.left + rect.width / 2;
+      vx += fromLeft ? 190 : -190;
+    });
+
+    function tick(now) {
+      const dt = Math.min(0.032, Math.max(0.001, (now - lastTime) / 1000));
+      lastTime = now;
+
+      const L0 = strap.offsetHeight || 118;
+
+      if (!dragging) {
+        // Elastic spring-back force toward (0, 0)
+        const ax = -K_POS * dx - D_POS * vx;
+        const ay = -K_POS * dy - D_POS * vy;
+        vx += ax * dt;
+        vy += ay * dt;
+        dx += vx * dt;
+        dy += vy * dt;
+
+        // Snap tiny floating-point jitter cleanly to rest
+        if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && Math.abs(vx) < 0.2 && Math.abs(vy) < 0.2) {
+          dx = 0;
+          dy = 0;
+          vx = 0;
+          vy = 0;
         }
-      );
-    };
+      }
 
-    badge.addEventListener('pointerenter', triggerSwing);
-    badge.addEventListener('click', triggerSwing);
+      // Compute gentle idle sway when near rest
+      const motionMag = Math.hypot(dx, dy) + Math.hypot(vx, vy) * 0.05;
+      const idleBlend = Math.max(0, 1 - motionMag / 18);
+      swayTime += dt;
+      const idleAngle = Math.sin(swayTime * 1.95) * 1.25 * idleBlend;
+
+      // Strap vector from ceiling anchor (0, 0) to clip (dx, L0 + dy)
+      const clipX = dx;
+      const clipY = Math.max(24, L0 + dy);
+      const strapDist = Math.hypot(clipX, clipY);
+      const strapAngleDeg = (Math.atan2(-clipX, clipY) * 180) / Math.PI + idleAngle;
+      const strapScaleY = strapDist / L0;
+
+      // Card tilts along strap angle + velocity-driven swivel lag
+      const targetTilt = strapAngleDeg * 0.85 + Math.max(-28, Math.min(28, -vx * 0.018));
+      const arot = K_ROT * (targetTilt - tilt) - D_ROT * vtilt;
+      vtilt += arot * dt;
+      tilt += vtilt * dt;
+
+      strap.style.transform = `rotate(${strapAngleDeg.toFixed(2)}deg) scaleY(${strapScaleY.toFixed(4)})`;
+      body.style.transform = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg)`;
+
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
   }
 
   function runEntrance() {
@@ -137,7 +255,7 @@
         );
         drop.onfinish = () => {
           drop.cancel();
-          startBadgeSway();
+          startBadgePhysics();
         };
       }
 
