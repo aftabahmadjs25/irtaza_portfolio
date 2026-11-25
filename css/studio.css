@@ -768,11 +768,12 @@ img {
 }
 
 .device-bezel {
+  display: block;
   position: relative;
   background: #070c12;
   border-radius: 10px;
   padding: 10px;
-  aspect-ratio: 16 / 10.5;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   cursor: pointer;
 }
@@ -837,23 +838,6 @@ img {
   height: 4px;
   background: #667f94;
   border-radius: 0 0 6px 6px;
-}
-
-.device-tap-hint {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  z-index: 4;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 99px;
-  background: rgba(5, 40, 82, 0.8);
-  color: var(--mint);
-  backdrop-filter: blur(6px);
-  pointer-events: none;
 }
 
 /* Right Ticket + Prev/Next Round Controls */

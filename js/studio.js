@@ -312,7 +312,7 @@
       ],
       key: '// jobsnap',
       text: '— an on-demand local home services marketplace connecting customers and pros in real time.',
-      image: 'images/js_images/1.PNG',
+      image: 'images/covers/jobsnap-cover.png',
       href: 'jobsnap.html',
     },
     {
@@ -324,7 +324,7 @@
       ],
       key: '// rung king',
       text: '— classic 2D multiplayer card game supporting online matches and smart AI opponents.',
-      image: 'images/Rung/1.PNG',
+      image: 'images/covers/rung-king-cover.jpg',
       href: 'rung-king.html',
     },
     {
@@ -336,7 +336,7 @@
       ],
       key: '// ride hoppy',
       text: '— a free corporate ride-sharing platform streamlining daily team commutes.',
-      image: 'images/rh_hero.png',
+      image: 'images/covers/ride-hoppy-cover.jpg',
       href: 'ride-hoppy.html',
     },
     {
@@ -348,7 +348,7 @@
       ],
       key: '// b2b cabs',
       text: '— corporate employee transportation system with route tracking and scheduling.',
-      image: 'images/B2B/1.PNG',
+      image: 'images/covers/b2b-cabs-cover.png',
       href: 'b2b-cabs.html',
     },
     {
@@ -360,7 +360,7 @@
       ],
       key: '// curio campus',
       text: '— peer-to-peer student collaboration and campus emergency support platform.',
-      image: 'images/cc_screen_1.jpg',
+      image: 'images/covers/curio-campus-cover.png',
       href: 'curio-campus.html',
     },
     {
@@ -372,7 +372,7 @@
       ],
       key: '// pc genius',
       text: '— smart PC recommendation and custom hardware build estimator for enthusiasts.',
-      image: 'images/pc_genius_hero.png',
+      image: 'images/covers/pc-genius-cover.png',
       href: 'pc-genius.html',
     },
   ];
@@ -392,7 +392,7 @@
   const caseDescEl = document.getElementById('caseDesc');
   const prevBtn = document.getElementById('prevCaseBtn');
   const nextBtn = document.getElementById('nextCaseBtn');
-  const screenHit = document.getElementById('deviceScreenHit');
+  const screenLinkEl = document.getElementById('deviceScreenLink');
   const miniCards = Array.from(document.querySelectorAll('.project-mini-ticket'));
 
   function pad2(n) {
@@ -407,6 +407,10 @@
     caseTextEl.textContent = item.text;
     caseCounterEl.textContent = `${pad2(idx + 1)} / ${pad2(CASES.length)}`;
     caseStudyLinkEl.href = item.href;
+    if (screenLinkEl) {
+      screenLinkEl.href = item.href;
+      screenLinkEl.setAttribute('aria-label', `Open ${item.title} case study`);
+    }
     previewImgEl.src = item.image;
     previewImgEl.alt = `${item.title} preview`;
 
@@ -514,16 +518,6 @@
 
   if (prevBtn) prevBtn.addEventListener('click', () => switchCase(currentIdx - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => switchCase(currentIdx + 1));
-
-  if (screenHit) {
-    screenHit.addEventListener('click', () => switchCase(currentIdx + 1));
-    screenHit.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        switchCase(currentIdx + 1);
-      }
-    });
-  }
 
   document.querySelectorAll('[data-select-case]').forEach((btn) => {
     btn.addEventListener('click', () => {
