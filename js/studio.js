@@ -375,6 +375,7 @@
       image: 'images/openpool/openpool-cover-16x9.jpg',
       href: 'b2b-cabs.html',
     },
+    /* Hidden for now: Curio Campus & PC Genius
     {
       title: 'CURIO CAMPUS',
       rows: [
@@ -399,6 +400,7 @@
       image: 'images/covers/pc-genius-cover.png',
       href: 'pc-genius.html',
     },
+    */
   ];
 
   let currentIdx = 0;
