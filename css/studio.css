@@ -754,6 +754,8 @@ img {
   width: 100%;
   max-width: 620px;
   margin: 0 auto;
+  perspective: 1400px;
+  perspective-origin: 50% 85%;
 }
 
 .device-chassis {
@@ -761,10 +763,29 @@ img {
   background: linear-gradient(145deg, #e6eff6 0%, #a8becf 45%, #6f8799 100%);
   padding: 12px;
   border-radius: 18px;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
   box-shadow:
     0 30px 64px rgba(4, 27, 56, 0.55),
     0 2px 0 rgba(255, 255, 255, 0.6) inset,
     0 -2px 0 rgba(0, 0, 0, 0.25) inset;
+}
+
+/* Closed 3D laptop state before scrolling into Featured Projects */
+.case-stage.stage-closed .device-chassis {
+  transform: rotateX(-86deg) scale(0.96);
+}
+
+.case-stage.stage-closed .device-screen img {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.case-stage.stage-closed #caseTicket,
+.case-stage.stage-closed #caseDesc,
+.case-stage.stage-closed .case-nav-controls {
+  opacity: 0;
 }
 
 .device-bezel {

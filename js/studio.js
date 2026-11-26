@@ -589,7 +589,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     4. SCROLL REVEALS
+     4. SCROLL REVEALS & 3D LAPTOP-OPENING CHOREOGRAPHY
      ------------------------------------------------------------------------ */
   const reveals = document.querySelectorAll('.reveal');
   if (RM || !('IntersectionObserver' in window)) {
@@ -607,5 +607,121 @@
       { threshold: 0.12 }
     );
     reveals.forEach((el) => io.observe(el));
+  }
+
+  // 3D Laptop Lid Open + Screen Power-On + Ticket Drop when scrolling to #portfolio
+  const caseStageEl = document.getElementById('caseStage');
+  const chassisEl = caseStageEl ? caseStageEl.querySelector('.device-chassis') : null;
+  const navControlsEl = caseStageEl ? caseStageEl.querySelector('.case-nav-controls') : null;
+
+  if (caseStageEl && chassisEl && !RM && typeof Element.prototype.animate === 'function') {
+    let laptopOpened = false;
+    let stageAnims = [];
+
+    const closeLaptopStage = () => {
+      stageAnims.forEach((a) => a.cancel());
+      stageAnims = [];
+      laptopOpened = false;
+      caseStageEl.classList.add('stage-closed');
+    };
+
+    const openLaptopStage = () => {
+      if (laptopOpened) return;
+      laptopOpened = true;
+      caseStageEl.classList.remove('stage-closed');
+
+      // 1. 3D Laptop lid swings open on its bottom hinge
+      const lidAnim = chassisEl.animate(
+        [
+          { transform: 'rotateX(-86deg) scale(0.96)', offset: 0 },
+          { transform: 'rotateX(3.5deg) scale(1)', offset: 0.74 },
+          { transform: 'rotateX(0deg) scale(1)', offset: 1 },
+        ],
+        { duration: 920, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' }
+      );
+
+      // 2. Screen powers on with Haldoren glass flash
+      const flashAnim = flashEl
+        ? flashEl.animate(
+            [{ opacity: 0 }, { opacity: 0.52, offset: 0.3 }, { opacity: 0 }],
+            { duration: 540, delay: 480, easing: 'ease-out', fill: 'both' }
+          )
+        : null;
+
+      const imgAnim = previewImgEl
+        ? previewImgEl.animate(
+            [
+              { opacity: 0, transform: 'scale(1.07)' },
+              { opacity: 1, transform: 'scale(1)' },
+            ],
+            { duration: 640, delay: 500, easing: EASE_OUT, fill: 'both' }
+          )
+        : null;
+
+      // 3. Punched paper ticket drops in & settles like a hung tag
+      const ticketAnim = ticketEl
+        ? ticketEl.animate(
+            [
+              { opacity: 0, transform: 'translateY(-54px) rotate(-5deg)', offset: 0 },
+              { opacity: 1, transform: 'translateY(6px) rotate(1.2deg)', offset: 0.72 },
+              { opacity: 1, transform: 'translateY(0) rotate(0deg)', offset: 1 },
+            ],
+            { duration: 760, delay: 560, easing: EASE_OUT, fill: 'both' }
+          )
+        : null;
+
+      // 4. Editorial description staggers in
+      const descKids = caseDescEl ? Array.from(caseDescEl.children) : [];
+      const descAnims = descKids.map((child, idx) =>
+        child.animate(
+          [
+            { opacity: 0, transform: 'translateY(16px)' },
+            { opacity: 1, transform: 'translateY(0)' },
+          ],
+          { duration: 520, delay: 580 + idx * 75, easing: EASE_OUT, fill: 'both' }
+        )
+      );
+
+      // 5. Round Prev/Next buttons fade in
+      const navAnim = navControlsEl
+        ? navControlsEl.animate(
+            [
+              { opacity: 0, transform: 'translateY(12px)' },
+              { opacity: 1, transform: 'translateY(0)' },
+            ],
+            { duration: 480, delay: 720, easing: EASE_OUT, fill: 'both' }
+          )
+        : null;
+
+      stageAnims = [lidAnim, flashAnim, imgAnim, ticketAnim, ...descAnims, navAnim].filter(Boolean);
+
+      // Release fill:both once finished so switchCase() animations never conflict
+      lidAnim.onfinish = () => {
+        setTimeout(() => {
+          if (laptopOpened) {
+            stageAnims.forEach((a) => a.cancel());
+            stageAnims = [];
+          }
+        }, 450);
+      };
+    };
+
+    // Start folded shut before scrolling into Featured Projects
+    closeLaptopStage();
+
+    const laptopIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+            openLaptopStage();
+          } else if (!entry.isIntersecting && entry.boundingClientRect.top > window.innerHeight * 0.9) {
+            // Reset cleanly when user scrolls back up to the Hero so it replays on next visit
+            closeLaptopStage();
+          }
+        });
+      },
+      { threshold: [0, 0.3] }
+    );
+    laptopIO.observe(caseStageEl);
   }
 })();
