@@ -560,12 +560,24 @@
   }
 
   document.querySelectorAll('[data-select-case]').forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const idx = Number(btn.getAttribute('data-select-case'));
       switchCase(idx);
       const stage = document.getElementById('caseStage');
       if (stage) {
         stage.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'center' });
+      }
+    });
+  });
+
+  // Clicking or tapping anywhere on a project card opens its case study
+  miniCards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button, a')) return;
+      const link = card.querySelector('a.mini-link');
+      if (link && link.href) {
+        window.location.href = link.href;
       }
     });
   });

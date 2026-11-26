@@ -1010,6 +1010,7 @@ img {
   color: var(--ink);
   padding: 18px 18px 16px;
   border-radius: 3px;
+  cursor: pointer;
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.22), 0 12px 24px rgba(4, 27, 56, 0.24);
   transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.2s ease;
 }
