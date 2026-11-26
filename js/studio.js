@@ -304,6 +304,54 @@
       href: 'taj-support.html',
     },
     {
+      title: 'OPENPOOL',
+      rows: [
+        ['CLIENT', 'OPENPOOL'],
+        ['CATEGORY', 'COMMUTE & FLEET'],
+        ['STACK', 'FLUTTER • PROVIDER'],
+      ],
+      key: '// openpool',
+      text: '— office commutes, school rides & corporate transportation with dedicated employee and driver apps.',
+      image: 'images/openpool/openpool-cover-16x9.jpg',
+      href: 'b2b-cabs.html',
+    },
+    {
+      title: 'JOBSNAP',
+      rows: [
+        ['CLIENT', 'JOBSNAP'],
+        ['CATEGORY', 'HOME SERVICES'],
+        ['STACK', 'FLUTTER • FIREBASE'],
+      ],
+      key: '// jobsnap',
+      text: '— an on-demand local home services marketplace connecting customers and pros in real time.',
+      image: 'images/covers/jobsnap-cover.png',
+      href: 'jobsnap.html',
+    },
+    {
+      title: 'RIDE HOPPY',
+      rows: [
+        ['CLIENT', 'RIDE HOPPY'],
+        ['CATEGORY', 'RIDE SHARING'],
+        ['STACK', 'FLUTTER • REST API'],
+      ],
+      key: '// ride hoppy',
+      text: '— a free corporate ride-sharing platform streamlining daily team commutes.',
+      image: 'images/covers/ride-hoppy-cover.jpg',
+      href: 'ride-hoppy.html',
+    },
+    {
+      title: 'RUNG KING',
+      rows: [
+        ['CLIENT', 'RUNG KING'],
+        ['CATEGORY', '2D CARD GAME'],
+        ['STACK', 'FLAME • MULTIPLAYER'],
+      ],
+      key: '// rung king',
+      text: '— classic 2D multiplayer card game supporting online matches and smart AI opponents.',
+      image: 'images/covers/rung-king-cover.jpg',
+      href: 'rung-king.html',
+    },
+    {
       title: 'FORMA LIVING',
       rows: [
         ['CLIENT', 'FORMA LIVING'],
@@ -326,54 +374,6 @@
       text: '— sneaker discovery, size selection & live order tracking built for speed and polish.',
       image: 'images/shoe-store/0_portfolio_cover_banner.jpg',
       href: 'shoe-store.html',
-    },
-    {
-      title: 'JOBSNAP',
-      rows: [
-        ['CLIENT', 'JOBSNAP'],
-        ['CATEGORY', 'HOME SERVICES'],
-        ['STACK', 'FLUTTER • FIREBASE'],
-      ],
-      key: '// jobsnap',
-      text: '— an on-demand local home services marketplace connecting customers and pros in real time.',
-      image: 'images/covers/jobsnap-cover.png',
-      href: 'jobsnap.html',
-    },
-    {
-      title: 'RUNG KING',
-      rows: [
-        ['CLIENT', 'RUNG KING'],
-        ['CATEGORY', '2D CARD GAME'],
-        ['STACK', 'FLAME • MULTIPLAYER'],
-      ],
-      key: '// rung king',
-      text: '— classic 2D multiplayer card game supporting online matches and smart AI opponents.',
-      image: 'images/covers/rung-king-cover.jpg',
-      href: 'rung-king.html',
-    },
-    {
-      title: 'RIDE HOPPY',
-      rows: [
-        ['CLIENT', 'RIDE HOPPY'],
-        ['CATEGORY', 'RIDE SHARING'],
-        ['STACK', 'FLUTTER • REST API'],
-      ],
-      key: '// ride hoppy',
-      text: '— a free corporate ride-sharing platform streamlining daily team commutes.',
-      image: 'images/covers/ride-hoppy-cover.jpg',
-      href: 'ride-hoppy.html',
-    },
-    {
-      title: 'OPENPOOL',
-      rows: [
-        ['CLIENT', 'OPENPOOL'],
-        ['CATEGORY', 'COMMUTE & FLEET'],
-        ['STACK', 'FLUTTER • PROVIDER'],
-      ],
-      key: '// openpool',
-      text: '— office commutes, school rides & corporate transportation with dedicated employee and driver apps.',
-      image: 'images/openpool/openpool-cover-16x9.jpg',
-      href: 'b2b-cabs.html',
     },
     /* Hidden for now: Curio Campus & PC Genius
     {
