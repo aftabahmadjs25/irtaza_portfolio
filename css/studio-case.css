@@ -155,6 +155,33 @@ body * {
   text-align: left !important;
 }
 
+/* Top Round Back Icon Button (desktop & mobile) */
+.case-top-back {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  margin-bottom: 18px !important;
+  background: var(--paper) !important;
+  color: var(--studio-900) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.24), 0 8px 18px rgba(4, 27, 56, 0.28) !important;
+  transition: transform 0.22s var(--ease-out), background 0.2s ease !important;
+}
+
+.case-top-back i {
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+.case-top-back:hover {
+  transform: scale(1.08) translateY(-1px) !important;
+  background: var(--sky-tint) !important;
+  color: var(--studio-950) !important;
+}
+
 /* Ensure GSAP-hidden elements stay crisp once revealed */
 .project-header {
   position: relative;
@@ -800,30 +827,56 @@ body * {
     padding: 5px 10px !important;
   }
 
-  /* Sleeker mobile editorial cards */
+  /* Clean cohesive Flutter-blue glass cards on mobile (matches About & Process) */
   .project-section {
-    border-radius: 10px !important;
-    padding: 20px 16px !important;
-    margin-bottom: 18px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(207, 239, 255, 0.22) !important;
+    border-radius: 12px !important;
+    padding: 20px 18px !important;
+    margin-bottom: 16px !important;
+    color: var(--paper) !important;
+    box-shadow: 0 10px 26px rgba(4, 20, 44, 0.22) !important;
   }
 
   .project-section h3 {
-    font-size: 22px !important;
+    font-size: 21px !important;
+    color: var(--paper) !important;
     padding-bottom: 10px !important;
     margin-bottom: 14px !important;
+    border-bottom: 1px dashed rgba(207, 239, 255, 0.24) !important;
   }
 
   .project-section h3 i {
-    font-size: 21px !important;
+    font-size: 20px !important;
+    color: var(--sky-tint) !important;
+  }
+
+  .project-section h4,
+  .commerce-feature h4,
+  .why-card h4,
+  .how-card h4,
+  .feature-column h4,
+  .chart-card h4,
+  .detail-timeline-content h4 {
+    color: var(--paper) !important;
+  }
+
+  .project-section strong {
+    color: var(--sky-tint) !important;
   }
 
   .project-section p,
+  .project-section li,
   .commerce-feature p,
   .why-card p,
   .how-card p,
-  .feature-item {
+  .feature-item,
+  .metric-label {
     font-size: 14px !important;
-    line-height: 1.58 !important;
+    line-height: 1.6 !important;
+    color: rgba(235, 246, 255, 0.88) !important;
   }
 
   .commerce-feature,
@@ -831,8 +884,34 @@ body * {
   .how-card,
   .feature-column,
   .metric-card,
-  .chart-card {
+  .chart-card,
+  .detail-timeline-content {
+    background: rgba(5, 32, 66, 0.42) !important;
+    border: 1px solid rgba(207, 239, 255, 0.16) !important;
+    border-left: 3px solid var(--sky-soft) !important;
     padding: 15px 14px !important;
+    border-radius: 8px !important;
+    color: var(--paper) !important;
+  }
+
+  .feature-item i,
+  .why-card i {
+    color: var(--sky-soft) !important;
+  }
+
+  .metric-value {
+    color: var(--sky-tint) !important;
+  }
+
+  .service-chip {
+    background: rgba(4, 27, 56, 0.55) !important;
+    border: 1px solid rgba(207, 239, 255, 0.25) !important;
+    color: var(--sky-tint) !important;
+    box-shadow: none !important;
+  }
+
+  .carousel-caption {
+    color: var(--sky-tint) !important;
   }
 
   /* Clean mobile carousel: full-width mockup with round prev/next arrows neatly below */
