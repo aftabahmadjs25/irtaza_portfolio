@@ -31,6 +31,8 @@
 }
 
 /* Per-app brand accent tokens */
+body[data-case="smartagro"] { --case-accent: #22c55e; --case-accent-ink: #042412; }
+body[data-case="tajsupport"]{ --case-accent: #ef4444; --case-accent-ink: #ffffff; }
 body[data-case="forma"]     { --case-accent: #5eead4; --case-accent-ink: #042f2e; }
 body[data-case="solestep"]  { --case-accent: #ff7a59; --case-accent-ink: #2a0a04; }
 body[data-case="jobsnap"]   { --case-accent: #ff5ca8; --case-accent-ink: #2b0416; }
@@ -613,6 +615,48 @@ body * {
   background: var(--case-accent) !important;
   border-color: var(--case-accent) !important;
   color: var(--case-accent-ink) !important;
+}
+
+/* Widescreen Desktop Carousel for Flutter Desktop apps (e.g. SmartAgro) */
+.desktop-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a1410;
+  box-shadow: 0 24px 54px rgba(4, 27, 56, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.16);
+}
+
+.desktop-mockup .phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #0a1410;
+}
+
+.desktop-mockup .phone-screen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.desktop-mockup .phone-screen img.active {
+  opacity: 1;
+}
+
+.carousel-caption {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--studio-800);
 }
 
 /* ==========================================================================

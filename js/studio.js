@@ -276,9 +276,33 @@
   setTimeout(runEntrance, 3500);
 
   /* ------------------------------------------------------------------------
-     2. INTERACTIVE PROJECT CASE SWITCHER (8 Flutter Apps)
+     2. INTERACTIVE PROJECT CASE SWITCHER (10 Flutter Apps)
      ------------------------------------------------------------------------ */
   const CASES = [
+    {
+      title: 'SMARTAGRO',
+      rows: [
+        ['CLIENT', 'SMARTAGRO'],
+        ['CATEGORY', 'DESKTOP ERP & GIS'],
+        ['STACK', 'FLUTTER DESKTOP'],
+      ],
+      key: '// smartagro',
+      text: '— desktop enterprise farm & estate ERP featuring GIS satellite land mapping, crop planning, inventory & farm finance.',
+      image: 'images/smart-agro/cover-16x9.jpg',
+      href: 'smart-agro.html',
+    },
+    {
+      title: 'TAJ SUPPORT',
+      rows: [
+        ['CLIENT', 'TAJ TECHNOLOGY'],
+        ['CATEGORY', 'LIVE SUPPORT DESK'],
+        ['STACK', 'FLUTTER • REAL-TIME'],
+      ],
+      key: '// taj support',
+      text: '— real-time customer support & team messaging with department queues, voice notes and rich file sharing.',
+      image: 'images/taj-support/cover-16x9.jpg',
+      href: 'taj-support.html',
+    },
     {
       title: 'FORMA LIVING',
       rows: [
