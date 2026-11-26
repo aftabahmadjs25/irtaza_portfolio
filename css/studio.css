@@ -1776,6 +1776,85 @@ img {
     flex: 0 0 84%;
     scroll-snap-align: start;
   }
+
+  /* Compact connected vertical timeline for My Process on mobile */
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-left: 22px;
+  }
+
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 22px;
+    bottom: 22px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--mint-soft) 0%, rgba(207, 239, 255, 0.2) 100%);
+    border-radius: 2px;
+  }
+
+  .process-card {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 14px;
+    row-gap: 4px;
+    align-items: center;
+    padding: 16px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Glowing node on the timeline rail */
+  .process-card::before {
+    content: '';
+    position: absolute;
+    left: -19px;
+    top: 24px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 4px rgba(84, 197, 248, 0.22);
+  }
+
+  .process-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    margin: 2px 0 0 0;
+  }
+
+  .process-step-num {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 26px;
+    line-height: 1;
+    margin: 0;
+    opacity: 0.35;
+  }
+
+  .process-card h3 {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 17px;
+    margin: 0;
+    padding-right: 36px;
+  }
+
+  .process-card p {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 13.5px;
+    line-height: 1.45;
+    margin: 0;
+  }
 }
 
 @media (max-width: 560px) {
