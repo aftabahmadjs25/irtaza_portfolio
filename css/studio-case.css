@@ -85,6 +85,12 @@ body * {
   z-index: 100 !important;
 }
 
+.header .header-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
 .header .logo {
   font-family: var(--font-ui) !important;
   font-weight: 800 !important;
@@ -155,29 +161,30 @@ body * {
   text-align: left !important;
 }
 
-/* Top Round Back Icon Button (desktop & mobile) */
+/* Top Round Back Icon Button inside Fixed Header (desktop & mobile) */
 .case-top-back {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 42px !important;
-  height: 42px !important;
+  width: 36px !important;
+  height: 36px !important;
   padding: 0 !important;
-  margin-bottom: 18px !important;
+  margin: 0 !important;
   background: var(--paper) !important;
   color: var(--studio-900) !important;
   border-radius: 50% !important;
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.24), 0 8px 18px rgba(4, 27, 56, 0.28) !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.24), 0 6px 14px rgba(4, 27, 56, 0.25) !important;
   transition: transform 0.22s var(--ease-out), background 0.2s ease !important;
 }
 
 .case-top-back i {
-  font-size: 24px !important;
+  font-size: 22px !important;
   line-height: 1 !important;
 }
 
 .case-top-back:hover {
-  transform: scale(1.08) translateY(-1px) !important;
+  transform: scale(1.08) !important;
   background: var(--sky-tint) !important;
   color: var(--studio-950) !important;
 }
@@ -778,25 +785,17 @@ body * {
    MOBILE RESPONSIVE
    ========================================================================== */
 @media (max-width: 820px) {
+  #menu-icon,
   .header .navbar {
-    position: absolute !important;
-    top: 100% !important;
-    left: 14px !important;
-    right: 14px !important;
-    padding: 14px !important;
-    background: var(--studio-950) !important;
-    border: 1px solid rgba(207, 239, 255, 0.24) !important;
-    border-radius: 6px !important;
-    flex-wrap: wrap !important;
     display: none !important;
   }
 
-  .header .navbar.active {
-    display: flex !important;
+  .header {
+    padding: 10px 16px !important;
   }
 
   .project-detail-section {
-    padding: 84px 14px 48px !important;
+    padding: 76px 14px 48px !important;
   }
 
   .project-header {
