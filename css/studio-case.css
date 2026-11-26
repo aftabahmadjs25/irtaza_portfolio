@@ -542,7 +542,10 @@ body * {
 .detail-timeline-date {
   display: inline-block !important;
   background: var(--studio-800) !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
   color: var(--sky-tint) !important;
+  -webkit-text-fill-color: var(--sky-tint) !important;
   font-size: 11px !important;
   font-weight: 700 !important;
   letter-spacing: 0.06em !important;
