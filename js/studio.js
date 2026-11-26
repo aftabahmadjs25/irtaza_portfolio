@@ -863,4 +863,270 @@
     );
     aboutIO.observe(aboutSec);
   }
+
+  /* ------------------------------------------------------------------------
+     6. UNIFIED CHOREOGRAPHY FOR PROJECTS GRID, EXPERIENCE, PROCESS, SKILLS & CONTACT
+     ------------------------------------------------------------------------ */
+  if (!RM && typeof Element.prototype.animate === 'function') {
+    function wireSectionChoreography(rootEl, getTargets, playFn, threshold = 0.2) {
+      if (!rootEl) return;
+      let played = false;
+      let anims = [];
+
+      const reset = () => {
+        anims.forEach((a) => a.cancel());
+        anims = [];
+        played = false;
+        getTargets().forEach((el) => {
+          el.style.opacity = '0';
+        });
+      };
+
+      const play = () => {
+        if (played) return;
+        played = true;
+        getTargets().forEach((el) => {
+          el.style.opacity = '';
+        });
+        anims = playFn().filter(Boolean);
+        // Release fill:both after settle so CSS hover transforms stay crisp
+        const longest = anims.reduce((max, a) => {
+          const t = a.effect ? a.effect.getTiming() : {};
+          const end = (t.delay || 0) + (t.duration || 0);
+          return end > max ? end : max;
+        }, 0);
+        setTimeout(() => {
+          if (played) {
+            anims.forEach((a) => a.cancel());
+            anims = [];
+          }
+        }, longest + 80);
+      };
+
+      reset();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio >= threshold) {
+              play();
+            } else if (
+              !entry.isIntersecting &&
+              (entry.boundingClientRect.top > window.innerHeight * 0.92 ||
+                entry.boundingClientRect.bottom < 0)
+            ) {
+              reset();
+            }
+          });
+        },
+        { threshold: [0, threshold] }
+      );
+      observer.observe(rootEl);
+    }
+
+    function animateSectionHeader(sec) {
+      const eyebrow = sec.querySelector('.section-eyebrow');
+      const title = sec.querySelector('.section-title');
+      const sub = sec.querySelector('.section-sub');
+      const out = [];
+      if (eyebrow) {
+        out.push(
+          eyebrow.animate(
+            [
+              { opacity: 0, clipPath: 'inset(0 100% 0 0)' },
+              { opacity: 1, clipPath: 'inset(0 0 0 0)' },
+            ],
+            { duration: 640, easing: 'cubic-bezier(0.5, 0, 0.3, 1)', fill: 'both' }
+          )
+        );
+      }
+      if (title) {
+        out.push(
+          title.animate(
+            [
+              { opacity: 0, transform: 'translateY(34px)', clipPath: 'inset(100% 0 0 0)' },
+              { opacity: 1, transform: 'translateY(0)', clipPath: 'inset(0 0 0 0)' },
+            ],
+            { duration: 680, delay: 80, easing: EASE_OUT, fill: 'both' }
+          )
+        );
+      }
+      if (sub) {
+        out.push(
+          sub.animate(
+            [
+              { opacity: 0, transform: 'translateY(16px)' },
+              { opacity: 1, transform: 'translateY(0)' },
+            ],
+            { duration: 540, delay: 180, easing: EASE_OUT, fill: 'both' }
+          )
+        );
+      }
+      return out;
+    }
+
+    // 6A. All 08 Case Studies mini-ticket deck
+    const projectsGrid = document.getElementById('projectsGrid');
+    const projectsIndexHead = document.querySelector('.projects-index-head');
+    if (projectsGrid) {
+      const cards = Array.from(projectsGrid.querySelectorAll('.project-mini-ticket'));
+      wireSectionChoreography(
+        projectsGrid,
+        () => [projectsIndexHead, ...cards].filter(Boolean),
+        () => {
+          const out = [];
+          if (projectsIndexHead) {
+            out.push(
+              projectsIndexHead.animate(
+                [
+                  { opacity: 0, transform: 'translateY(16px)' },
+                  { opacity: 1, transform: 'translateY(0)' },
+                ],
+                { duration: 480, easing: EASE_OUT, fill: 'both' }
+              )
+            );
+          }
+          cards.forEach((card, i) => {
+            const tilt = i % 2 === 0 ? -2.4 : 2.4;
+            out.push(
+              card.animate(
+                [
+                  { opacity: 0, transform: `translateY(38px) rotate(${tilt}deg) scale(0.95)`, offset: 0 },
+                  { opacity: 1, transform: 'translateY(-3px) rotate(0deg) scale(1)', offset: 0.75 },
+                  { opacity: 1, transform: 'translateY(0) rotate(0deg) scale(1)', offset: 1 },
+                ],
+                { duration: 640, delay: 90 + i * 65, easing: EASE_OUT, fill: 'both' }
+              )
+            );
+          });
+          return out;
+        },
+        0.16
+      );
+    }
+
+    // 6B. Experience punched paper tickets
+    const expSec = document.getElementById('services');
+    if (expSec) {
+      const expCards = Array.from(expSec.querySelectorAll('.exp-card'));
+      wireSectionChoreography(
+        expSec,
+        () => [expSec.querySelector('.section-eyebrow'), expSec.querySelector('.section-title'), expSec.querySelector('.section-sub'), ...expCards].filter(Boolean),
+        () => [
+          ...animateSectionHeader(expSec),
+          ...expCards.map((card, i) =>
+            card.animate(
+              [
+                { opacity: 0, transform: 'translateY(-44px) rotate(-3deg)', offset: 0 },
+                { opacity: 1, transform: 'translateY(6px) rotate(0.9deg)', offset: 0.72 },
+                { opacity: 1, transform: 'translateY(0) rotate(0deg)', offset: 1 },
+              ],
+              { duration: 760, delay: 200 + i * 110, easing: EASE_OUT, fill: 'both' }
+            )
+          ),
+        ],
+        0.18
+      );
+    }
+
+    // 6C. My Process 4 steps
+    const procSec = document.getElementById('lifecycle');
+    if (procSec) {
+      const procCards = Array.from(procSec.querySelectorAll('.process-card'));
+      wireSectionChoreography(
+        procSec,
+        () => [procSec.querySelector('.section-eyebrow'), procSec.querySelector('.section-title'), ...procCards].filter(Boolean),
+        () => [
+          ...animateSectionHeader(procSec),
+          ...procCards.map((card, i) =>
+            card.animate(
+              [
+                { opacity: 0, transform: 'translateY(32px) scale(0.95)' },
+                { opacity: 1, transform: 'translateY(0) scale(1)' },
+              ],
+              { duration: 580, delay: 180 + i * 95, easing: EASE_SPRING, fill: 'both' }
+            )
+          ),
+        ],
+        0.2
+      );
+    }
+
+    // 6D. Skills & Education cards + chip pop
+    const skillsSec = document.getElementById('skills');
+    if (skillsSec) {
+      const skillCards = Array.from(skillsSec.querySelectorAll('.skill-card'));
+      const skillChips = Array.from(skillsSec.querySelectorAll('.skill-chip'));
+      wireSectionChoreography(
+        skillsSec,
+        () => [skillsSec.querySelector('.section-eyebrow'), skillsSec.querySelector('.section-title'), ...skillCards, ...skillChips].filter(Boolean),
+        () => [
+          ...animateSectionHeader(skillsSec),
+          ...skillCards.map((card, i) =>
+            card.animate(
+              [
+                { opacity: 0, transform: 'translateY(34px)' },
+                { opacity: 1, transform: 'translateY(0)' },
+              ],
+              { duration: 600, delay: 160 + i * 85, easing: EASE_OUT, fill: 'both' }
+            )
+          ),
+          ...skillChips.map((chip, i) =>
+            chip.animate(
+              [
+                { opacity: 0, transform: 'translateY(10px) scale(0.9)' },
+                { opacity: 1, transform: 'translateY(0) scale(1)' },
+              ],
+              { duration: 380, delay: 360 + i * 32, easing: EASE_SPRING, fill: 'both' }
+            )
+          ),
+        ],
+        0.18
+      );
+    }
+
+    // 6E. Contact section + punched form ticket
+    const contactSec = document.getElementById('contact');
+    if (contactSec) {
+      const contactLinks = Array.from(contactSec.querySelectorAll('.contact-link-card'));
+      const contactForm = contactSec.querySelector('.contact-form-card');
+      const contactCopy = Array.from(contactSec.querySelectorAll('.contact-left h3, .contact-left p'));
+      wireSectionChoreography(
+        contactSec,
+        () => [contactSec.querySelector('.section-eyebrow'), contactSec.querySelector('.section-title'), ...contactCopy, ...contactLinks, contactForm].filter(Boolean),
+        () => [
+          ...animateSectionHeader(contactSec),
+          ...contactCopy.map((el, i) =>
+            el.animate(
+              [
+                { opacity: 0, transform: 'translateY(18px)' },
+                { opacity: 1, transform: 'translateY(0)' },
+              ],
+              { duration: 540, delay: 160 + i * 80, easing: EASE_OUT, fill: 'both' }
+            )
+          ),
+          ...contactLinks.map((card, i) =>
+            card.animate(
+              [
+                { opacity: 0, transform: 'translateX(-24px)' },
+                { opacity: 1, transform: 'translateX(0)' },
+              ],
+              { duration: 520, delay: 280 + i * 85, easing: EASE_OUT, fill: 'both' }
+            )
+          ),
+          contactForm
+            ? contactForm.animate(
+                [
+                  { opacity: 0, transform: 'translateY(-48px) rotate(-3.5deg)', offset: 0 },
+                  { opacity: 1, transform: 'translateY(5px) rotate(0.9deg)', offset: 0.72 },
+                  { opacity: 1, transform: 'translateY(0) rotate(0deg)', offset: 1 },
+                ],
+                { duration: 780, delay: 260, easing: EASE_OUT, fill: 'both' }
+              )
+            : null,
+        ],
+        0.18
+      );
+    }
+  }
 })();
