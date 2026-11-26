@@ -340,15 +340,15 @@
       href: 'ride-hoppy.html',
     },
     {
-      title: 'B2B CABS',
+      title: 'OPENPOOL',
       rows: [
-        ['CLIENT', 'B2B CABS'],
-        ['CATEGORY', 'ENTERPRISE FLEET'],
+        ['CLIENT', 'OPENPOOL'],
+        ['CATEGORY', 'COMMUTE & FLEET'],
         ['STACK', 'FLUTTER • PROVIDER'],
       ],
-      key: '// b2b cabs',
-      text: '— corporate employee transportation system with route tracking and scheduling.',
-      image: 'images/covers/b2b-cabs-cover.png',
+      key: '// openpool',
+      text: '— office commutes, school rides & corporate transportation with dedicated employee and driver apps.',
+      image: 'images/openpool/openpool-cover-16x9.jpg',
       href: 'b2b-cabs.html',
     },
     {
