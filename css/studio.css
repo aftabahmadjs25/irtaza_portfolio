@@ -1112,8 +1112,8 @@ img {
 .stat-pill strong {
   display: block;
   font-family: var(--font-display);
-  font-size: 30px;
-  line-height: 1;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.08;
   color: var(--mint);
 }
 

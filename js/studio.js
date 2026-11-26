@@ -724,4 +724,143 @@
     );
     laptopIO.observe(caseStageEl);
   }
+
+  /* ------------------------------------------------------------------------
+     5. ABOUT SECTION CHOREOGRAPHY (Script Write-On, Stagger, Counter & Ticket Drop)
+     ------------------------------------------------------------------------ */
+  const aboutSec = document.getElementById('about');
+  if (aboutSec && !RM && typeof Element.prototype.animate === 'function') {
+    const aboutEyebrow = aboutSec.querySelector('.section-eyebrow');
+    const aboutTitle = aboutSec.querySelector('.section-title');
+    const aboutCopyKids = Array.from(aboutSec.querySelectorAll('.about-copy h3, .about-copy p'));
+    const statPills = Array.from(aboutSec.querySelectorAll('.stat-pill'));
+    const aboutTicket = document.getElementById('aboutTicket');
+    const counterEl = aboutSec.querySelector('[data-count-to]');
+
+    let aboutPlayed = false;
+    let aboutAnims = [];
+
+    const resetAbout = () => {
+      aboutAnims.forEach((a) => a.cancel());
+      aboutAnims = [];
+      aboutPlayed = false;
+      [aboutEyebrow, aboutTitle, ...aboutCopyKids, ...statPills, aboutTicket]
+        .filter(Boolean)
+        .forEach((el) => {
+          el.style.opacity = '0';
+        });
+    };
+
+    const animateCounter = (el) => {
+      if (!el) return;
+      const target = Number(el.getAttribute('data-count-to')) || 10;
+      const suffix = el.getAttribute('data-count-suffix') || '';
+      const dur = 850;
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(eased * target);
+        el.textContent = `${String(val).padStart(2, '0')}${suffix}`;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const playAbout = () => {
+      if (aboutPlayed) return;
+      aboutPlayed = true;
+
+      [aboutEyebrow, aboutTitle, ...aboutCopyKids, ...statPills, aboutTicket]
+        .filter(Boolean)
+        .forEach((el) => {
+          el.style.opacity = '';
+        });
+
+      const anims = [];
+
+      if (aboutEyebrow) {
+        anims.push(
+          aboutEyebrow.animate(
+            [
+              { opacity: 0, clipPath: 'inset(0 100% 0 0)' },
+              { opacity: 1, clipPath: 'inset(0 0 0 0)' },
+            ],
+            { duration: 680, easing: 'cubic-bezier(0.5, 0, 0.3, 1)', fill: 'both' }
+          )
+        );
+      }
+
+      if (aboutTitle) {
+        anims.push(
+          aboutTitle.animate(
+            [
+              { opacity: 0, transform: 'translateY(36px)', clipPath: 'inset(100% 0 0 0)' },
+              { opacity: 1, transform: 'translateY(0)', clipPath: 'inset(0 0 0 0)' },
+            ],
+            { duration: 720, delay: 90, easing: EASE_OUT, fill: 'both' }
+          )
+        );
+      }
+
+      aboutCopyKids.forEach((el, i) => {
+        anims.push(
+          el.animate(
+            [
+              { opacity: 0, transform: 'translateY(22px)' },
+              { opacity: 1, transform: 'translateY(0)' },
+            ],
+            { duration: 620, delay: 180 + i * 95, easing: EASE_OUT, fill: 'both' }
+          )
+        );
+      });
+
+      statPills.forEach((pill, i) => {
+        anims.push(
+          pill.animate(
+            [
+              { opacity: 0, transform: 'translateY(24px) scale(0.95)' },
+              { opacity: 1, transform: 'translateY(0) scale(1)' },
+            ],
+            { duration: 560, delay: 420 + i * 90, easing: EASE_SPRING, fill: 'both' }
+          )
+        );
+      });
+
+      if (counterEl) {
+        setTimeout(() => animateCounter(counterEl), 440);
+      }
+
+      if (aboutTicket) {
+        anims.push(
+          aboutTicket.animate(
+            [
+              { opacity: 0, transform: 'translateY(-54px) rotate(-4.5deg)', offset: 0 },
+              { opacity: 1, transform: 'translateY(6px) rotate(1.1deg)', offset: 0.72 },
+              { opacity: 1, transform: 'translateY(0) rotate(0deg)', offset: 1 },
+            ],
+            { duration: 820, delay: 320, easing: EASE_OUT, fill: 'both' }
+          )
+        );
+      }
+
+      aboutAnims = anims;
+    };
+
+    resetAbout();
+
+    const aboutIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+            playAbout();
+          } else if (!entry.isIntersecting && (entry.boundingClientRect.top > window.innerHeight * 0.9 || entry.boundingClientRect.bottom < 0)) {
+            resetAbout();
+          }
+        });
+      },
+      { threshold: [0, 0.25] }
+    );
+    aboutIO.observe(aboutSec);
+  }
 })();
