@@ -1,0 +1,734 @@
+/* ==========================================================================
+   IRTAZA KHALID — FLUTTER STUDIO CASE STUDY THEME (Option 2)
+   Unified Flutter Blue studio base + per-project brand accent tokens
+   Overrides old dark-navy/particles theme cleanly while preserving all JS/DOM
+   ========================================================================== */
+
+:root {
+  --studio-950: #041b38;
+  --studio-900: #052852;
+  --studio-850: #073466;
+  --studio-800: #083c75;
+  --studio-700: #02569b;
+  --studio-600: #0175c2;
+  --sky-tint: #cfefff;
+  --sky-soft: #54c5f8;
+  --paper: #ffffff;
+  --paper-soft: #f3f8fc;
+  --paper-border: #d0e1ee;
+  --ink: #0d0f0e;
+  --ink-muted: #3b4956;
+  --line-dotted: #2a2a2a;
+
+  /* Default project accent (overridden per page via body[data-case]) */
+  --case-accent: #54c5f8;
+  --case-accent-ink: #041b38;
+
+  --font-ui: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Anton', Impact, sans-serif;
+  --font-script: 'Caveat Brush', cursive;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Per-app brand accent tokens */
+body[data-case="forma"]     { --case-accent: #5eead4; --case-accent-ink: #042f2e; }
+body[data-case="solestep"]  { --case-accent: #ff7a59; --case-accent-ink: #2a0a04; }
+body[data-case="jobsnap"]   { --case-accent: #ff5ca8; --case-accent-ink: #2b0416; }
+body[data-case="rungking"]  { --case-accent: #f5c518; --case-accent-ink: #241b00; }
+body[data-case="ridehoppy"] { --case-accent: #38e89e; --case-accent-ink: #032618; }
+body[data-case="b2bcabs"]   { --case-accent: #f5a623; --case-accent-ink: #261700; }
+body[data-case="curio"]     { --case-accent: #b794ff; --case-accent-ink: #1a0b38; }
+body[data-case="pcgenius"]  { --case-accent: #38bdf8; --case-accent-ink: #041b38; }
+
+/* Hide old particles canvas */
+#particles-js {
+  display: none !important;
+}
+
+/* Global Flutter Studio Canvas */
+html,
+body {
+  background: var(--studio-900) !important;
+  background-image:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(19, 185, 253, 0.22) 0%, transparent 65%),
+    linear-gradient(180deg, #052852 0%, #02569b 36%, #052852 100%) !important;
+  background-attachment: fixed !important;
+  color: var(--paper) !important;
+  font-family: var(--font-ui) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+body * {
+  font-family: var(--font-ui);
+}
+
+/* ==========================================================================
+   HEADER -> TACTILE WHITE NAV TAGS
+   ========================================================================== */
+.header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  padding: 12px clamp(16px, 3vw, 36px) !important;
+  background: linear-gradient(180deg, rgba(5, 40, 82, 0.92) 0%, rgba(5, 40, 82, 0.72) 100%) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(207, 239, 255, 0.14) !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  z-index: 100 !important;
+}
+
+.header .logo {
+  font-family: var(--font-ui) !important;
+  font-weight: 800 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--paper) !important;
+  margin-right: 0 !important;
+}
+
+.header .navbar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.header .navbar a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 34px !important;
+  padding: 0 15px !important;
+  margin: 0 !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 14.5px !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: lowercase !important;
+  border-radius: 2px !important;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.22), 0 6px 14px rgba(0, 0, 0, 0.18) !important;
+  transition: transform 0.22s var(--ease-out), background 0.2s ease, box-shadow 0.22s var(--ease-out) !important;
+}
+
+.header .navbar a::before {
+  display: none !important;
+}
+
+.header .navbar a:hover {
+  transform: translateY(-2px) rotate(-1.5deg) !important;
+  background: var(--sky-tint) !important;
+  color: var(--ink) !important;
+}
+
+.header .navbar a.active {
+  background: var(--case-accent) !important;
+  color: var(--case-accent-ink) !important;
+}
+
+#menu-icon {
+  color: var(--paper) !important;
+  font-size: 28px !important;
+}
+
+/* ==========================================================================
+   MAIN CASE STUDY CONTAINER & HERO HEADER
+   ========================================================================== */
+.project-detail-section {
+  padding: 108px clamp(16px, 4vw, 48px) 64px !important;
+  min-height: auto !important;
+}
+
+.about-content,
+.commerce-content {
+  max-width: 1080px !important;
+  margin: 0 auto !important;
+  text-align: left !important;
+}
+
+/* Ensure GSAP-hidden elements stay crisp once revealed */
+.project-header {
+  position: relative;
+  text-align: left !important;
+  margin-bottom: 24px !important;
+  padding-bottom: 24px !important;
+  border-bottom: 1px solid rgba(207, 239, 255, 0.22) !important;
+}
+
+.project-header .commerce-eyebrow {
+  font-family: var(--font-script) !important;
+  font-size: 28px !important;
+  letter-spacing: 0 !important;
+  text-transform: lowercase !important;
+  color: var(--case-accent) !important;
+  margin-bottom: 6px !important;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.project-header h1,
+.project-header h2.heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(46px, 7vw, 82px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: uppercase !important;
+  text-align: left !important;
+  color: var(--paper) !important;
+  margin: 0 0 10px 0 !important;
+}
+
+.project-header h2.heading span,
+.project-header .snap-pink,
+.project-header .rung-accent,
+.project-header .b2b-accent {
+  font-family: var(--font-display) !important;
+  color: var(--case-accent) !important;
+}
+
+.project-subtitle,
+.commerce-subtitle {
+  font-size: clamp(17px, 2vw, 22px) !important;
+  font-weight: 600 !important;
+  color: var(--sky-tint) !important;
+  margin: 6px 0 18px 0 !important;
+  line-height: 1.35 !important;
+}
+
+.project-description {
+  font-size: 16.5px !important;
+  line-height: 1.65 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  max-width: 780px !important;
+  margin: 0 0 28px 0 !important;
+}
+
+/* Meta tags & badges */
+.project-meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 14px !important;
+}
+
+.meta-tag,
+.live-tag,
+.game-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 13px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(207, 239, 255, 0.25) !important;
+  color: var(--paper) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  border-radius: 2px !important;
+}
+
+.meta-tag.live-tag,
+.meta-tag.game-tag {
+  background: var(--case-accent) !important;
+  border-color: var(--case-accent) !important;
+  color: var(--case-accent-ink) !important;
+}
+
+/* Store Links (App Store / Play Store) */
+.store-links {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 18px !important;
+  margin: 18px 0 22px !important;
+}
+
+.store-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.store-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--sky-tint) !important;
+}
+
+.store-btns {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+}
+
+.store-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  border-radius: 2px !important;
+  border: none !important;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25), 0 8px 18px rgba(4, 27, 56, 0.25) !important;
+  transition: transform 0.22s var(--ease-out), background 0.2s ease !important;
+}
+
+.store-btn:hover {
+  transform: translateY(-2px) rotate(-1deg) !important;
+  background: var(--case-accent) !important;
+  color: var(--case-accent-ink) !important;
+}
+
+/* Tech Stack Strip */
+.tech-strip,
+.tech-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 16px 0 28px !important;
+}
+
+.tech-strip span,
+.tech-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 12px !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  border-radius: 2px !important;
+  border: none !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Hero Logo / Banner Container */
+.hero-img-container {
+  margin: 22px auto 36px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.hero-img-container img {
+  border-radius: 16px !important;
+  box-shadow: 0 24px 48px rgba(4, 27, 56, 0.42) !important;
+  border: 2px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+.commerce-logo > img {
+  width: 180px !important;
+  border-radius: 24px !important;
+}
+
+.commerce-logo .sole-logo {
+  width: 180px !important;
+  height: 180px !important;
+  border-radius: 24px !important;
+  background: #0a131f !important;
+  padding: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 24px 48px rgba(4, 27, 56, 0.42) !important;
+}
+
+/* ==========================================================================
+   PROJECT SECTIONS -> CRISP WHITE PAPER STUDIO CARDS
+   ========================================================================== */
+.project-section {
+  position: relative !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border-radius: 4px !important;
+  border: none !important;
+  border-top: 4px solid var(--case-accent) !important;
+  padding: clamp(24px, 3.5vw, 38px) clamp(22px, 3.8vw, 42px) !important;
+  margin-bottom: 26px !important;
+  box-shadow: 0 18px 40px rgba(4, 27, 56, 0.3) !important;
+}
+
+.project-section h3 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(26px, 3vw, 34px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: uppercase !important;
+  color: var(--ink) !important;
+  padding-bottom: 12px !important;
+  margin: 0 0 18px 0 !important;
+  border-bottom: 1.5px dotted var(--line-dotted) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.project-section h3 i {
+  color: var(--studio-700) !important;
+  font-size: 26px !important;
+}
+
+.project-section h4 {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: var(--ink) !important;
+  margin-bottom: 8px !important;
+}
+
+.project-section p {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: var(--ink-muted) !important;
+  margin: 0 0 14px 0 !important;
+}
+
+.project-section p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.project-section strong {
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+}
+
+.project-section ul,
+.project-section li {
+  color: var(--ink-muted) !important;
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+}
+
+/* Sub-cards inside white paper sections */
+.commerce-features,
+.why-grid,
+.how-grid,
+.stats-grid,
+.metrics-container {
+  display: grid !important;
+  gap: 16px !important;
+  margin-top: 16px !important;
+}
+
+.commerce-feature,
+.why-card,
+.how-card,
+.feature-column,
+.metric-card,
+.chart-card {
+  background: var(--paper-soft) !important;
+  border: 1.5px solid var(--paper-border) !important;
+  border-left: 4px solid var(--case-accent) !important;
+  border-radius: 4px !important;
+  padding: 20px !important;
+  box-shadow: none !important;
+  color: var(--ink) !important;
+}
+
+.commerce-feature h4,
+.why-card h4,
+.how-card h4,
+.feature-column h4,
+.chart-card h4 {
+  color: var(--studio-800) !important;
+  font-size: 16.5px !important;
+  font-weight: 800 !important;
+  margin-bottom: 8px !important;
+}
+
+.commerce-feature p,
+.why-card p,
+.how-card p,
+.feature-item {
+  color: var(--ink-muted) !important;
+  font-size: 14.5px !important;
+}
+
+.feature-item i,
+.why-card i {
+  color: var(--studio-700) !important;
+}
+
+.how-num {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 3px !important;
+  background: var(--case-accent) !important;
+  color: var(--case-accent-ink) !important;
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Service chips inside JobSnap */
+.services-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+.service-chip {
+  background: var(--paper-soft) !important;
+  border: 1.5px solid var(--studio-800) !important;
+  color: var(--ink) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  padding: 6px 12px !important;
+  border-radius: 2px !important;
+  box-shadow: 0 2px 0 var(--studio-800) !important;
+}
+
+/* Metrics & Progress Bars (Ride Hoppy, Curio Campus, PC Genius) */
+.metric-value {
+  font-family: var(--font-display) !important;
+  font-size: 32px !important;
+  color: var(--studio-800) !important;
+  line-height: 1.1 !important;
+}
+
+.metric-label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: var(--ink-muted) !important;
+}
+
+.progress-graph,
+.bar-bg {
+  background: #dce9f4 !important;
+  border-radius: 99px !important;
+  overflow: hidden !important;
+}
+
+.progress-bar,
+.bar-fill {
+  background: linear-gradient(90deg, var(--studio-700), var(--case-accent)) !important;
+  border-radius: 99px !important;
+}
+
+/* Timelines inside Project Sections */
+.detail-timeline {
+  position: relative !important;
+}
+
+.detail-timeline-dot {
+  background: var(--case-accent) !important;
+  border: 3px solid var(--studio-800) !important;
+  box-shadow: none !important;
+}
+
+.detail-timeline-content {
+  background: var(--paper-soft) !important;
+  border: 1.5px solid var(--paper-border) !important;
+  border-radius: 4px !important;
+  padding: 16px 20px !important;
+  color: var(--ink) !important;
+}
+
+.detail-timeline-date {
+  display: inline-block !important;
+  background: var(--studio-800) !important;
+  color: var(--sky-tint) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  padding: 3px 9px !important;
+  border-radius: 2px !important;
+  margin-bottom: 6px !important;
+}
+
+.detail-timeline-content h4 {
+  color: var(--ink) !important;
+}
+
+/* ==========================================================================
+   PHONE MOCKUP CAROUSEL -> STUDIO BLUE STAGE + ROUND HALDOREN BUTTONS
+   ========================================================================== */
+.carousel-heading {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--studio-800) !important;
+  margin: 22px 0 10px !important;
+}
+
+.phone-container {
+  position: relative !important;
+  background: linear-gradient(180deg, #052852 0%, #02569b 58%, #3da9e8 100%) !important;
+  border-radius: 8px !important;
+  padding: 32px 20px !important;
+  margin: 18px 0 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 24px !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+}
+
+.nav-btn {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 26px !important;
+  background: rgba(5, 40, 82, 0.45) !important;
+  border: 1.6px solid rgba(255, 255, 255, 0.9) !important;
+  color: var(--paper) !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: transform 0.22s var(--ease-out), background 0.2s ease, color 0.2s ease !important;
+}
+
+.nav-btn.next,
+.nav-btn.next-btn {
+  background: var(--paper) !important;
+  border-color: var(--paper) !important;
+  color: var(--studio-800) !important;
+}
+
+.nav-btn:hover {
+  transform: scale(1.09) !important;
+  background: var(--case-accent) !important;
+  border-color: var(--case-accent) !important;
+  color: var(--case-accent-ink) !important;
+}
+
+/* ==========================================================================
+   BOTTOM ACTION BAR (Back to Projects + Next Case Study)
+   ========================================================================== */
+.case-bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(207, 239, 255, 0.22);
+}
+
+.btn,
+.back-btn,
+.case-next-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 42px !important;
+  padding: 0 20px !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  border: none !important;
+  border-radius: 3px !important;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.26), 0 8px 18px rgba(4, 27, 56, 0.28) !important;
+  transition: transform 0.22s var(--ease-out), background 0.2s ease !important;
+}
+
+.btn:hover,
+.back-btn:hover,
+.case-next-btn:hover {
+  transform: translateY(-2px) rotate(-1.2deg) !important;
+  background: var(--sky-tint) !important;
+  color: var(--ink) !important;
+}
+
+.case-next-btn {
+  background: var(--case-accent) !important;
+  color: var(--case-accent-ink) !important;
+}
+
+.case-next-btn:hover {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--studio-950) !important;
+  border-top: 1px solid rgba(207, 239, 255, 0.14) !important;
+  padding: 24px clamp(18px, 4vw, 48px) !important;
+}
+
+.footer-text p {
+  font-size: 13.5px !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.footer-iconTop a {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: var(--paper) !important;
+  color: var(--studio-900) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.footer-iconTop a i {
+  color: var(--studio-900) !important;
+  font-size: 22px !important;
+}
+
+.footer-iconTop a:hover {
+  background: var(--case-accent) !important;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE
+   ========================================================================== */
+@media (max-width: 820px) {
+  .header .navbar {
+    position: absolute !important;
+    top: 100% !important;
+    left: 14px !important;
+    right: 14px !important;
+    padding: 14px !important;
+    background: var(--studio-950) !important;
+    border: 1px solid rgba(207, 239, 255, 0.24) !important;
+    border-radius: 4px !important;
+    flex-wrap: wrap !important;
+    display: none !important;
+  }
+
+  .header .navbar.active {
+    display: flex !important;
+  }
+
+  .phone-container {
+    gap: 12px !important;
+    padding: 20px 10px !important;
+  }
+
+  .nav-btn {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 22px !important;
+  }
+}
