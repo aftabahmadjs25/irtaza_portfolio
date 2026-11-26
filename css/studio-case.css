@@ -759,7 +759,7 @@ body * {
     padding: 14px !important;
     background: var(--studio-950) !important;
     border: 1px solid rgba(207, 239, 255, 0.24) !important;
-    border-radius: 4px !important;
+    border-radius: 6px !important;
     flex-wrap: wrap !important;
     display: none !important;
   }
@@ -768,14 +768,127 @@ body * {
     display: flex !important;
   }
 
+  .project-detail-section {
+    padding: 84px 14px 48px !important;
+  }
+
+  .project-header {
+    margin-bottom: 18px !important;
+    padding-bottom: 18px !important;
+  }
+
+  .project-header h1,
+  .project-header h2.heading {
+    font-size: clamp(36px, 10vw, 48px) !important;
+  }
+
+  .project-subtitle,
+  .commerce-subtitle {
+    font-size: 15.5px !important;
+    margin: 4px 0 12px 0 !important;
+  }
+
+  .tech-strip,
+  .tech-tags {
+    gap: 6px !important;
+    margin: 12px 0 20px !important;
+  }
+
+  .tech-strip span,
+  .tech-tag {
+    font-size: 11.5px !important;
+    padding: 5px 10px !important;
+  }
+
+  /* Sleeker mobile editorial cards */
+  .project-section {
+    border-radius: 10px !important;
+    padding: 20px 16px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .project-section h3 {
+    font-size: 22px !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .project-section h3 i {
+    font-size: 21px !important;
+  }
+
+  .project-section p,
+  .commerce-feature p,
+  .why-card p,
+  .how-card p,
+  .feature-item {
+    font-size: 14px !important;
+    line-height: 1.58 !important;
+  }
+
+  .commerce-feature,
+  .why-card,
+  .how-card,
+  .feature-column,
+  .metric-card,
+  .chart-card {
+    padding: 15px 14px !important;
+  }
+
+  /* Clean mobile carousel: full-width mockup with round prev/next arrows neatly below */
   .phone-container {
-    gap: 12px !important;
-    padding: 20px 10px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    padding: 18px 12px 16px !important;
+    border-radius: 10px !important;
+  }
+
+  .phone-container .phone-mockup,
+  .phone-container .desktop-mockup {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  .phone-container .desktop-mockup {
+    max-width: 100% !important;
+  }
+
+  .phone-container .nav-btn.prev,
+  .phone-container .nav-btn.prev-btn {
+    order: 2 !important;
+  }
+
+  .phone-container .nav-btn.next,
+  .phone-container .nav-btn.next-btn {
+    order: 3 !important;
   }
 
   .nav-btn {
-    width: 40px !important;
-    height: 40px !important;
+    width: 44px !important;
+    height: 44px !important;
     font-size: 22px !important;
+  }
+
+  /* Fix bottom Back / Next buttons: crisp single-line full-width stack */
+  .case-bottom-nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    margin-top: 26px !important;
+    padding-top: 20px !important;
+  }
+
+  .case-bottom-nav .btn,
+  .case-bottom-nav .back-btn,
+  .case-bottom-nav .case-next-btn {
+    width: 100% !important;
+    height: 46px !important;
+    padding: 0 18px !important;
+    font-size: 14.5px !important;
+    white-space: nowrap !important;
+    justify-content: center !important;
+    border-radius: 6px !important;
   }
 }

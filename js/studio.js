@@ -545,6 +545,20 @@
   if (prevBtn) prevBtn.addEventListener('click', () => switchCase(currentIdx - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => switchCase(currentIdx + 1));
 
+  // Mobile horizontal carousel prev/next buttons for All 08 Case Studies
+  const gridEl = document.getElementById('projectsGrid');
+  const gridPrevBtn = document.getElementById('gridPrevBtn');
+  const gridNextBtn = document.getElementById('gridNextBtn');
+  if (gridEl && gridPrevBtn && gridNextBtn) {
+    const scrollGridBy = (dir) => {
+      const card = gridEl.querySelector('.project-mini-ticket');
+      const step = card ? card.offsetWidth + 14 : 280;
+      gridEl.scrollBy({ left: dir * step, behavior: RM ? 'auto' : 'smooth' });
+    };
+    gridPrevBtn.addEventListener('click', () => scrollGridBy(-1));
+    gridNextBtn.addEventListener('click', () => scrollGridBy(1));
+  }
+
   document.querySelectorAll('[data-select-case]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const idx = Number(btn.getAttribute('data-select-case'));
