@@ -924,10 +924,12 @@ body * {
 
   .phone-container .phone-mockup {
     order: 1 !important;
-    width: min(260px, 76vw) !important;
-    max-width: 260px !important;
+    width: min(200px, 56vw) !important;
+    max-width: 200px !important;
     height: auto !important;
     aspect-ratio: 9 / 19.5 !important;
+    border-width: 7px !important;
+    border-radius: 26px !important;
     margin: 0 auto !important;
   }
 
