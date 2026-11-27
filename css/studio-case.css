@@ -922,15 +922,35 @@ body * {
     border-radius: 10px !important;
   }
 
-  .phone-container .phone-mockup,
-  .phone-container .desktop-mockup {
+  .phone-container .phone-mockup {
     order: 1 !important;
+    width: min(260px, 76vw) !important;
+    max-width: 260px !important;
+    height: auto !important;
+    aspect-ratio: 9 / 19.5 !important;
+    margin: 0 auto !important;
+  }
+
+  .phone-container .phone-mockup .phone-screen {
     width: 100% !important;
-    max-width: 300px !important;
+    height: 100% !important;
+  }
+
+  .phone-container .phone-mockup .phone-screen img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .ecommerce-case .phone-container .phone-mockup .phone-screen img {
+    object-fit: contain !important;
   }
 
   .phone-container .desktop-mockup {
+    order: 1 !important;
+    width: 100% !important;
     max-width: 100% !important;
+    height: auto !important;
   }
 
   .phone-container .nav-btn.prev,
