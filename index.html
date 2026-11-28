@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Preload hero portrait for instant above-the-fold paint -->
+    <link rel="preload" as="image" href="images/web/irtaza-studio-cutout.webp" fetchpriority="high">
+
     <!-- Box Icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
@@ -76,7 +79,7 @@
 
         <!-- Centerpiece Subject (overlaps the wordmark) -->
         <div class="hero-subject">
-            <img src="images/irtaza-studio-cutout.png" alt="Irtaza Khalid — Flutter Developer">
+            <img src="images/web/irtaza-studio-cutout.webp" alt="Irtaza Khalid — Flutter Developer" fetchpriority="high" decoding="async">
         </div>
 
         <!-- Swinging & Draggable Lanyard ID Badge -->
@@ -90,7 +93,7 @@
                         <span class="badge-yr">2026</span>
                         <div class="badge-role">FLUTTER // MOBILE ENGINEER</div>
                         <div class="badge-photo">
-                            <img src="images/irtaza-studio-cutout.png" alt="Irtaza Khalid badge portrait" draggable="false">
+                            <img src="images/web/irtaza-studio-cutout.webp" alt="Irtaza Khalid badge portrait" draggable="false" decoding="async">
                         </div>
                         <div class="badge-row"><span>NAME</span><b>IRTAZA KHALID</b></div>
                         <div class="badge-row"><span>STACK</span><b>FLUTTER / DART</b></div>
@@ -167,7 +170,7 @@
                     <div class="device-chassis">
                         <a href="smart-agro.html" class="device-bezel" id="deviceScreenLink" aria-label="Open SmartAgro case study">
                             <div class="device-screen">
-                                <img src="images/smart-agro/cover-16x9.jpg" alt="SmartAgro preview" id="casePreviewImg">
+                                <img src="images/web/cover-smartagro.webp" alt="SmartAgro preview" id="casePreviewImg" decoding="async">
                                 <div class="device-flash" id="deviceFlash"></div>
                             </div>
                         </a>
@@ -221,7 +224,7 @@
             <div class="projects-grid reveal" id="projectsGrid">
                 <article class="project-mini-ticket is-active" data-case-index="0">
                     <div class="mini-top">
-                        <img class="mini-logo" src="images/smart-agro/logo.png" alt="SmartAgro" loading="lazy">
+                        <img class="mini-logo" src="images/web/logo-smartagro.webp" alt="SmartAgro" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">01</div>
                             <h4 class="mini-title">SmartAgro</h4>
@@ -236,7 +239,7 @@
 
                 <article class="project-mini-ticket" data-case-index="1">
                     <div class="mini-top">
-                        <img class="mini-logo contain" src="images/taj-support/logo.png" alt="Taj Support" loading="lazy">
+                        <img class="mini-logo contain" src="images/web/logo-tajsupport.webp" alt="Taj Support" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">02</div>
                             <h4 class="mini-title">Taj Support</h4>
@@ -251,7 +254,7 @@
 
                 <article class="project-mini-ticket" data-case-index="2">
                     <div class="mini-top">
-                        <img class="mini-logo" src="images/openpool/openpool-logo.png" alt="OpenPool" loading="lazy">
+                        <img class="mini-logo" src="images/web/logo-openpool.webp" alt="OpenPool" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">03</div>
                             <h4 class="mini-title">OpenPool</h4>
@@ -266,7 +269,7 @@
 
                 <article class="project-mini-ticket" data-case-index="3">
                     <div class="mini-top">
-                        <img class="mini-logo" src="images/js_images/logo.png" alt="JobSnap" loading="lazy">
+                        <img class="mini-logo" src="images/web/logo-jobsnap.webp" alt="JobSnap" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">04</div>
                             <h4 class="mini-title">JobSnap</h4>
@@ -281,7 +284,7 @@
 
                 <article class="project-mini-ticket" data-case-index="4">
                     <div class="mini-top">
-                        <img class="mini-logo" src="images/ride_hoppy_main.png" alt="Ride Hoppy" loading="lazy">
+                        <img class="mini-logo" src="images/web/logo-ridehoppy.webp" alt="Ride Hoppy" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">05</div>
                             <h4 class="mini-title">Ride Hoppy</h4>
@@ -296,7 +299,7 @@
 
                 <article class="project-mini-ticket" data-case-index="5">
                     <div class="mini-top">
-                        <img class="mini-logo" src="images/Rung/rang_logo.png" alt="Rung King" loading="lazy">
+                        <img class="mini-logo" src="images/web/logo-rungking.webp" alt="Rung King" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">06</div>
                             <h4 class="mini-title">Rung King</h4>
@@ -311,7 +314,7 @@
 
                 <article class="project-mini-ticket" data-case-index="6">
                     <div class="mini-top">
-                        <img class="mini-logo" src="images/furniture-ecommerce/00_Logo_Mint_Squircle_Geometric_Chair.png" alt="Forma Living" loading="lazy">
+                        <img class="mini-logo" src="images/web/logo-formaliving.webp" alt="Forma Living" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">07</div>
                             <h4 class="mini-title">Forma Living</h4>
@@ -326,7 +329,7 @@
 
                 <article class="project-mini-ticket" data-case-index="7">
                     <div class="mini-top">
-                        <img class="mini-logo contain" src="images/shoe-store/logo-trimmed.png" alt="SoleStep" loading="lazy">
+                        <img class="mini-logo contain" src="images/web/logo-solestep.webp" alt="SoleStep" loading="lazy" decoding="async">
                         <div>
                             <div class="mini-num">08</div>
                             <h4 class="mini-title">SoleStep</h4>

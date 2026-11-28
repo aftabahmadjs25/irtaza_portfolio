@@ -288,7 +288,7 @@
       ],
       key: '// smartagro',
       text: '— desktop enterprise farm & estate ERP featuring GIS satellite land mapping, crop planning, inventory & farm finance.',
-      image: 'images/smart-agro/cover-16x9.jpg',
+      image: 'images/web/cover-smartagro.webp',
       href: 'smart-agro.html',
     },
     {
@@ -300,7 +300,7 @@
       ],
       key: '// taj support',
       text: '— real-time customer support & team messaging with department queues, voice notes and rich file sharing.',
-      image: 'images/taj-support/cover-16x9.jpg',
+      image: 'images/web/cover-tajsupport.webp',
       href: 'taj-support.html',
     },
     {
@@ -312,7 +312,7 @@
       ],
       key: '// openpool',
       text: '— office commutes, school rides & corporate transportation with dedicated employee and driver apps.',
-      image: 'images/openpool/openpool-cover-16x9.jpg',
+      image: 'images/web/cover-openpool.webp',
       href: 'b2b-cabs.html',
     },
     {
@@ -324,7 +324,7 @@
       ],
       key: '// jobsnap',
       text: '— an on-demand local home services marketplace connecting customers and pros in real time.',
-      image: 'images/covers/jobsnap-cover.png',
+      image: 'images/web/cover-jobsnap.webp',
       href: 'jobsnap.html',
     },
     {
@@ -336,7 +336,7 @@
       ],
       key: '// ride hoppy',
       text: '— a free corporate ride-sharing platform streamlining daily team commutes.',
-      image: 'images/covers/ride-hoppy-cover.jpg',
+      image: 'images/web/cover-ridehoppy.webp',
       href: 'ride-hoppy.html',
     },
     {
@@ -348,7 +348,7 @@
       ],
       key: '// rung king',
       text: '— classic 2D multiplayer card game supporting online matches and smart AI opponents.',
-      image: 'images/covers/rung-king-cover.jpg',
+      image: 'images/web/cover-rungking.webp',
       href: 'rung-king.html',
     },
     {
@@ -360,7 +360,7 @@
       ],
       key: '// forma living',
       text: '— furniture discovery, customization & guided checkout crafted with clean Flutter architecture.',
-      image: 'images/furniture-ecommerce/00_Portfolio_Cover_Showcase.jpg',
+      image: 'images/web/cover-formaliving.webp',
       href: 'furniture-ecommerce.html',
     },
     {
@@ -372,7 +372,7 @@
       ],
       key: '// solestep',
       text: '— sneaker discovery, size selection & live order tracking built for speed and polish.',
-      image: 'images/shoe-store/0_portfolio_cover_banner.jpg',
+      image: 'images/web/cover-solestep.webp',
       href: 'shoe-store.html',
     },
     /* Hidden for now: Curio Campus & PC Genius
@@ -454,6 +454,28 @@
     });
   }
 
+  // Eagerly preload & decode all 8 WebP covers in background for 0ms switching
+  const coverCache = new Map();
+  function preloadCover(src) {
+    if (coverCache.has(src)) return coverCache.get(src);
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+    const ready = (img.decode ? img.decode() : new Promise((res) => { img.onload = res; img.onerror = res; }))
+      .catch(() => {});
+    coverCache.set(src, ready);
+    return ready;
+  }
+
+  const warmCovers = () => {
+    CASES.forEach((c) => preloadCover(c.image));
+  };
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(warmCovers, { timeout: 1200 });
+  } else {
+    setTimeout(warmCovers, 400);
+  }
+
   function switchCase(nextIdx) {
     const targetIdx = (nextIdx + CASES.length) % CASES.length;
     if (busy || targetIdx === currentIdx) return;
@@ -466,9 +488,8 @@
 
     busy = true;
 
-    // Preload next image cleanly
-    const preload = new Image();
-    preload.src = CASES[targetIdx].image;
+    // Ensure target image is decoded before swapping ticket & screen together
+    const imgReady = preloadCover(CASES[targetIdx].image);
 
     // 1. Out animation
     const ticketOut = ticketEl.animate(
@@ -493,7 +514,11 @@
       fill: 'forwards',
     });
 
-    ticketOut.onfinish = () => {
+    const outDone = new Promise((res) => {
+      ticketOut.onfinish = res;
+    });
+
+    Promise.all([outDone, Promise.race([imgReady, new Promise((r) => setTimeout(r, 1200))])]).then(() => {
       currentIdx = targetIdx;
       renderCaseContent(currentIdx);
 
@@ -539,7 +564,7 @@
         descIn.cancel();
         busy = false;
       };
-    };
+    });
   }
 
   if (prevBtn) prevBtn.addEventListener('click', () => switchCase(currentIdx - 1));

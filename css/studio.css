@@ -886,7 +886,14 @@ img {
   line-height: 1.08;
   color: var(--paper);
   text-align: left;
+  outline: none;
   transition: opacity 0.25s ease;
+}
+
+.nav-case:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 6px;
+  border-radius: 8px;
 }
 
 .nav-case.next {
